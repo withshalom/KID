@@ -861,10 +861,11 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
 <div id="sidebar">
   <div class="section-head" style="background:#ff8800;color:#fff;letter-spacing:0.1em;">✏️  Draw Tools</div>
 
+<!-- KID LAYER SWITCHER -->
 <!-- KID DRAWING TOOLS -->
 <div style="padding:8px 6px 6px;border-bottom:1px solid var(--border);flex-shrink:0;">
 
-  <!-- Mode toggle: LINES or CURVES -->
+  <!-- Mode: LINES or CURVES -->
   <div style="display:flex;gap:4px;margin-bottom:10px;">
     <button id="kid-mode-line" onclick="kidSetMode('line')"
       style="flex:1;padding:8px 4px;border-radius:6px;border:2px solid var(--accent);
@@ -880,27 +881,27 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
     </button>
   </div>
 
-  <!-- Layer buttons — same four always visible -->
+  <!-- Layer buttons -->
   <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:10px;">
-    <button id="kid-btn-solid" onclick="kidLayerBtn('Solid')"
+    <button id="kid-layer-solid" onclick="kidLayerBtn('Solid')"
       style="width:100%;padding:10px 10px;border-radius:6px;border:2px solid #1a2030;
       background:#1a2030;color:#e8ecf5;font-family:var(--fm);font-size:11px;font-weight:700;
       cursor:pointer;transition:all 0.12s;text-align:left;letter-spacing:0.04em;">
       ⬛ Solid
     </button>
-    <button id="kid-btn-hidden" onclick="kidLayerBtn('Hidden')"
+    <button id="kid-layer-hidden" onclick="kidLayerBtn('Hidden')"
       style="width:100%;padding:10px 10px;border-radius:6px;border:2px solid rgba(239,68,68,0.4);
       background:transparent;color:#ef4444;font-family:var(--fm);font-size:11px;font-weight:700;
       cursor:pointer;transition:all 0.12s;text-align:left;letter-spacing:0.04em;">
       🔴 Hidden
     </button>
-    <button id="kid-btn-center" onclick="kidLayerBtn('Center')"
+    <button id="kid-layer-center" onclick="kidLayerBtn('Center')"
       style="width:100%;padding:10px 10px;border-radius:6px;border:2px solid rgba(245,158,11,0.4);
       background:transparent;color:#f59e0b;font-family:var(--fm);font-size:11px;font-weight:700;
       cursor:pointer;transition:all 0.12s;text-align:left;letter-spacing:0.04em;">
       🟡 Center
     </button>
-    <button id="kid-btn-dim" onclick="kidLayerBtn('Dim')"
+    <button id="kid-layer-dim" onclick="kidLayerBtn('Dim')"
       style="width:100%;padding:10px 10px;border-radius:6px;border:2px solid rgba(57,255,20,0.35);
       background:transparent;color:#39ff14;font-family:var(--fm);font-size:11px;font-weight:700;
       cursor:pointer;transition:all 0.12s;text-align:left;letter-spacing:0.04em;">
@@ -910,7 +911,7 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
 
   <!-- Erase row -->
   <div style="display:flex;gap:4px;">
-    <button id="kid-btn-erase" onclick="kidDrawTool('Solid','erase')"
+    <button onclick="setTool('select')"
       style="flex:1;padding:9px 6px;border-radius:6px;border:2px solid var(--border);
       background:transparent;color:var(--t2);font-family:var(--fm);font-size:10px;font-weight:700;
       cursor:pointer;transition:all 0.12s;letter-spacing:0.04em;">
@@ -919,20 +920,11 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
     <button onclick="kidDeleteLast()"
       style="flex:1;padding:9px 6px;border-radius:6px;border:2px solid rgba(239,68,68,0.3);
       background:transparent;color:#ef4444;font-family:var(--fm);font-size:10px;font-weight:700;
-      cursor:pointer;transition:all 0.12s;letter-spacing:0.04em;"
-      title="Remove last drawn object (Delete key)">
+      cursor:pointer;transition:all 0.12s;letter-spacing:0.04em;">
       ↩ Undo
     </button>
   </div>
 </div>
-
-  <!-- Hidden measure bar — still accessible via HOW LONG? mission -->
-  <div id="measure-bar" style="display:none;align-items:center;gap:6px;padding:5px 8px;background:var(--panel2);border-bottom:1px solid var(--border);flex-shrink:0;flex-wrap:wrap;">
-    <label style="font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;">DIST</label>
-    <span id="measure-dist" style="font-family:var(--fm);font-size:11px;color:var(--amber);min-width:80px;">—</span>
-    <label style="font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;">ANG</label>
-    <span id="measure-angle" style="font-family:var(--fm);font-size:11px;color:var(--green);min-width:50px;">—</span>
-  </div>
 
   <!-- Mirror axis bar -->
   <div id="mirror-bar" style="display:none;align-items:center;gap:6px;padding:5px 8px;background:var(--panel2);border-bottom:1px solid var(--border);flex-shrink:0;flex-wrap:wrap;">
@@ -1385,8 +1377,7 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:14px;margin:18px 0;">
           <div style="display:flex;align-items:center;gap:10px;">
-            <label style="font-family:var(--fm);font-size:14px;font-weight:700;
-              color:var(--t2);letter-spacing:0.14em;text-transform:uppercase;">AGE</label>
+            <label style="font-family:var(--fm);font-size:14px;font-weight:700;color:var(--t2);letter-spacing:0.14em;text-transform:uppercase;">AGE</label>
             <input type="number" id="splash-age-input" min="3" max="99" placeholder="?"
               style="width:90px;font-size:clamp(28px,8vw,40px);font-weight:800;font-family:var(--fm);
               text-align:center;border:3px solid var(--border-hi);border-radius:12px;
@@ -2103,28 +2094,6 @@ function commitDynInput() {
   const pt = parseDynCoord(raw);
   if(!pt){ showToast('Bad coordinate: '+raw); return; }
 
-  // ── KID curve tool ──────────────────────────────────────────────────────
-  if (activeTool === 'kid-curve') {
-    const pt = hoverPt || mouseWorld;
-    // Double-click or same point twice = commit
-    if (kidCurvePoints.length > 0) {
-      const last = kidCurvePoints[kidCurvePoints.length-1];
-      if (Math.hypot(pt.x-last.x, pt.y-last.y) < 1) { kidCommitCurve(); return; }
-    }
-    kidCurvePoints.push({x:pt.x, y:pt.y});
-    render();
-    showToast('Point ' + kidCurvePoints.length + ' placed · Esc to finish curve');
-    return;
-  }
-
-  // ── KID erase tool — handled by mousedown/up/move on canvas ────────────
-  if (activeTool === 'kid-erase') {
-    kidEraseActive = true;
-    const rr = canvas.getBoundingClientRect();
-    kidEraseBrushAt(e.clientX-rr.left, e.clientY-rr.top);
-    return;
-  }
-
   if(activeTool==='line') {
     if(!lineState.active){
       lineState={active:true, x1:pt.x, y1:pt.y};
@@ -2796,9 +2765,7 @@ function drawRotatePreview() {
 // ── TOOL MANAGEMENT ─────────────────────────────────────
 function cancelTool() {
   lineState   = {active:false};
-  lineChain    = [];
-  kidCurvePoints = [];
-  kidEraseActive = false;
+  lineChain   = [];
   rectState   = {active:false};
   polyState   = {active:false};
   offsetState = {active:false, selectedLine:null, previewPts:null};
@@ -3232,11 +3199,7 @@ function onMouseDown(e) {
   }
 }
 
-let lastMouseSX = 0, lastMouseSY = 0;
 function onMouseMove(e) {
-  const _r = canvas.getBoundingClientRect();
-  lastMouseSX = e.clientX - _r.left;
-  lastMouseSY = e.clientY - _r.top;
   const rect=canvas.getBoundingClientRect();
   mouseScreen={x:e.clientX-rect.left, y:e.clientY-rect.top};
   const raw=screenToWorld(mouseScreen.x,mouseScreen.y);
@@ -3316,28 +3279,11 @@ function onMouseMove(e) {
     document.getElementById('rect-preview').style.display='none';
   }
 
-  // KID erase cursor + drag
-  if (activeTool === 'kid-erase') {
-    const _rr = canvas.getBoundingClientRect();
-    const _sx = e.clientX-_rr.left, _sy = e.clientY-_rr.top;
-    if (kidEraseActive) { kidEraseBrushAt(_sx,_sy); }
-  }
   if(dynVisible) positionDynInput();
   render();
-  // KID erase cursor drawn after render
-  if (activeTool === 'kid-erase') {
-    const _rr = canvas.getBoundingClientRect();
-    kidDrawEraserCursor(e.clientX-_rr.left, e.clientY-_rr.top);
-  }
-  // KID curve preview drawn after render
-  if (activeTool === 'kid-curve' && kidCurvePoints.length > 0) {
-    const _rr = canvas.getBoundingClientRect();
-    kidDrawCurvePreview(e.clientX-_rr.left, e.clientY-_rr.top);
-  }
 }
 
 function onMouseUp(e) {
-  if (activeTool === 'kid-erase') { kidEraseActive = false; render(); return; }
   if(isPanning){ isPanning=false; updateCursor(); }
 
   // Release pivot drag
@@ -3414,9 +3360,6 @@ function onKeyDown(e) {
   const k=e.key;
   if(k==='Escape'){
     closeDynInput();
-    // Commit curve if in progress
-    if(activeTool==='kid-curve' && kidCurvePoints.length>=2){ kidCommitCurve(); return; }
-    if(activeTool==='kid-curve'){ kidCurvePoints=[]; render(); return; }
     if(activeTool!=='select') cancelTool();
     else selectedIds.clear();
     updateSelectionProps();
@@ -5467,279 +5410,50 @@ kvInit();
 //  KID — Layer switcher + Mission engine
 // ═══════════════════════════════════════════════════════
 
-// ══════════════════════════════════════════════════════════════════════════
-// KID UNIFIED DRAW TOOL SYSTEM
-// Layer IS the tool. Clicking a button sets both layer and draw mode.
-// Curve: cardinal spline through clicked points, Esc to commit.
-// Erase: brush drag — erases anything within radius of stroke.
-// ══════════════════════════════════════════════════════════════════════════
+// ── KID SIMPLIFIED TOOL SYSTEM ──────────────────────────────────────────
+let kidDrawMode = 'line'; // 'line' | 'curve'
 
-let kidDrawMode = 'line';   // 'line' | 'curve' | 'erase'
-
-// Erase brush state
-let kidEraseActive = false;
-let kidEraseRadius = 20;    // px — scales with age
-
-function kidEraseRadiusPx() {
-  // Bigger eraser for younger kids — same logic as line scale
-  return Math.round(12 + (kidLineScale - 1) * 14);
-}
-
-// Curve state — cardinal spline through clicked points
-let kidCurvePoints = [];    // [{x,y}] world coords
-
-// Cardinal spline interpolation
-function kidCardinalSpline(pts, tension, ctx) {
-  if (pts.length < 2) return;
-  ctx.moveTo(pts[0].x, pts[0].y);
-  for (let i = 0; i < pts.length - 1; i++) {
-    const p0 = pts[Math.max(i - 1, 0)];
-    const p1 = pts[i];
-    const p2 = pts[i + 1];
-    const p3 = pts[Math.min(i + 2, pts.length - 1)];
-    const cp1x = p1.x + (p2.x - p0.x) * tension;
-    const cp1y = p1.y + (p2.y - p0.y) * tension;
-    const cp2x = p2.x - (p3.x - p1.x) * tension;
-    const cp2y = p2.y - (p3.y - p1.y) * tension;
-    ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, p2.x, p2.y);
-  }
-}
-
-// Commit curve as a polyline (enough points for smooth appearance)
-function kidCommitCurve() {
-  if (kidCurvePoints.length < 2) { kidCurvePoints = []; render(); return; }
-  // Sample the cardinal spline at many intermediate points
-  const sampled = [];
-  const pts = kidCurvePoints;
-  const tension = 0.4;
-  const steps = 10; // subdivisions per segment
-  for (let i = 0; i < pts.length - 1; i++) {
-    const p0 = pts[Math.max(i-1,0)];
-    const p1 = pts[i];
-    const p2 = pts[i+1];
-    const p3 = pts[Math.min(i+2,pts.length-1)];
-    for (let t = 0; t <= steps; t++) {
-      const u = t / steps;
-      const u2 = u*u, u3 = u2*u;
-      // Cubic Hermite with cardinal tension
-      const cp1x = p1.x + (p2.x-p0.x)*tension;
-      const cp1y = p1.y + (p2.y-p0.y)*tension;
-      const cp2x = p2.x - (p3.x-p1.x)*tension;
-      const cp2y = p2.y - (p3.y-p1.y)*tension;
-      // Evaluate bezier
-      const iu = 1-u, iu2 = iu*iu, iu3 = iu2*iu;
-      const x = iu3*p1.x + 3*iu2*u*cp1x + 3*iu*u2*cp2x + u3*p2.x;
-      const y = iu3*p1.y + 3*iu2*u*cp1y + 3*iu*u2*cp2y + u3*p2.y;
-      if (sampled.length === 0 || Math.hypot(x-sampled[sampled.length-1].x, y-sampled[sampled.length-1].y) > 0.5)
-        sampled.push({x, y});
-    }
-  }
-  GeoMemory.addPolyline(sampled, false, kidActiveLayer);
-  showToast('Curve drawn! ' + kidCurvePoints.length + ' points · ' + KID_LAYERS[kidActiveLayer].emoji);
-  kidCurvePoints = [];
-  render();
-}
-
-// Layer button click — sets active layer then activates the current draw mode
-function kidLayerBtn(layer) {
-  kidActiveLayer = layer;
-  kidDrawTool(layer, kidDrawMode);
-}
-
-// Set draw mode (line or curve) — updates toggle buttons
+// Mode toggle button
 function kidSetMode(mode) {
   kidDrawMode = mode;
   const linBtn = document.getElementById('kid-mode-line');
   const curBtn = document.getElementById('kid-mode-curve');
   if (linBtn && curBtn) {
     if (mode === 'line') {
-      linBtn.style.background = 'var(--accent-glow)';
-      linBtn.style.borderColor = 'var(--accent)';
-      linBtn.style.color = 'var(--accent)';
-      curBtn.style.background = 'transparent';
-      curBtn.style.borderColor = 'var(--border)';
-      curBtn.style.color = 'var(--t3)';
+      linBtn.style.background = 'var(--accent-glow)'; linBtn.style.borderColor = 'var(--accent)'; linBtn.style.color = 'var(--accent)';
+      curBtn.style.background = 'transparent'; curBtn.style.borderColor = 'var(--border)'; curBtn.style.color = 'var(--t3)';
     } else {
-      curBtn.style.background = 'rgba(255,136,0,0.10)';
-      curBtn.style.borderColor = 'var(--accent)';
-      curBtn.style.color = 'var(--accent)';
-      linBtn.style.background = 'transparent';
-      linBtn.style.borderColor = 'var(--border)';
-      linBtn.style.color = 'var(--t3)';
+      curBtn.style.background = 'rgba(255,136,0,0.10)'; curBtn.style.borderColor = 'var(--accent)'; curBtn.style.color = 'var(--accent)';
+      linBtn.style.background = 'transparent'; linBtn.style.borderColor = 'var(--border)'; linBtn.style.color = 'var(--t3)';
     }
   }
-  // Re-activate current layer in new mode
-  if (kidActiveLayer) kidLayerBtn(kidActiveLayer);
+  // Set the draw tool based on mode
+  if (mode === 'line') setTool('line');
+  else setTool('arc'); // use existing arc tool for curves
+  kidSetLayer(kidActiveLayer); // re-apply active layer
 }
 
-// Main entry point: button click sets layer + draw mode
-function kidDrawTool(layer, mode) {
-  kidActiveLayer = layer;   // MUST be set before setTool so render uses correct layer
-  kidDrawMode   = mode;
-  lineChain     = [];
-  kidCurvePoints = [];
-  kidEraseActive = false;
-  kidEraseRadius = kidEraseRadiusPx();
-
-  if (mode === 'line') {
-    setTool('line');           // properly initialises lineState, bars, cursor
-  } else if (mode === 'curve') {
-    cancelTool();
-    activeTool = 'kid-curve';
-    canvas.style.cursor = 'crosshair';
-  } else if (mode === 'erase') {
-    cancelTool();
-    activeTool = 'kid-erase';
-    canvas.style.cursor = 'none';
-  }
-
-  // Highlight the active button
-  _kidHighlightBtn(layer, mode);
-
-  const ls = KID_LAYERS[layer];
-  const modeLabel = mode === 'line' ? 'Line' : mode === 'curve' ? 'Curve' : 'Eraser';
-  const hints = {
-    line:  'Click to place points · Enter or click start to close · Esc to finish open line',
-    curve: 'Click to place curve points · Esc or double-click to finish smooth curve',
-    erase: 'Drag to erase · release to stop · Delete key removes last drawn object',
-  };
-  const hint = document.getElementById('hint');
-  if (hint) hint.innerHTML = '<span>' + ls.emoji + ' ' + ls.label + ' ' + modeLabel + '</span> — ' + hints[mode];
-  document.getElementById('kid-active-layer-label').textContent = ls.label;
-  document.getElementById('kid-active-layer-label').style.color = ls.color;
-  document.getElementById('sb-mode').textContent = modeLabel.toUpperCase();
-  render();
+// Layer button — sets layer then activates draw tool
+function kidLayerBtn(layer) {
+  kidSetLayer(layer);
+  if (kidDrawMode === 'line') setTool('line');
+  else setTool('arc');
 }
 
-function _kidHighlightBtn(layer, mode) {
-  // Clear all
-  const allBtns = ['solid','hidden','center','dim'];
-  const allModes = ['','curve-solid','curve-hidden','curve-center','curve-dim','erase'];
-  allBtns.forEach(n => {
-    const b = document.getElementById('kid-btn-' + n);
-    if (b) { b.style.transform=''; b.style.boxShadow=''; }
-  });
-  allModes.forEach(n => {
-    const key = n ? 'kid-btn-' + n : null;
-    if (key) { const b=document.getElementById(key); if(b){b.style.transform='';b.style.boxShadow='';} }
-  });
-  const eraseBtn = document.getElementById('kid-btn-erase');
-  if (eraseBtn) { eraseBtn.style.transform=''; eraseBtn.style.boxShadow=''; }
-
-  // Highlight active
-  const layerKey = layer.toLowerCase();
-  const btnId = mode === 'curve' ? 'kid-btn-curve-' + layerKey
-              : mode === 'erase' ? 'kid-btn-erase'
-              : 'kid-btn-' + layerKey;
-  const btn = document.getElementById(btnId);
-  if (btn) {
-    const ls = KID_LAYERS[layer];
-    btn.style.transform   = 'scale(1.03)';
-    btn.style.boxShadow   = '0 3px 12px rgba(0,0,0,0.22)';
-    btn.style.borderColor = ls.color;
-    if (mode === 'erase') {
-      btn.style.borderColor = '#9aa5b4';
-      btn.style.color       = '#d0d8e8';
-    }
-  }
-}
-
-// Delete last drawn object (Delete key or Undo Last button)
+// Undo last — cancels in-progress or pops last object
 function kidDeleteLast() {
-  // If a line is in progress, cancel it first
-  if (activeTool === 'line' && lineState.active) {
+  // Cancel in-progress line chain first
+  if (typeof lineChain !== 'undefined' && lineChain.length > 0) {
     lineChain = [];
-    lineState = {active:false};
+    if (typeof lineState !== 'undefined') lineState = {active:false};
     render();
     showToast('Line cancelled ↩');
-    return;
-  }
-  if (activeTool === 'kid-curve' && kidCurvePoints.length) {
-    kidCurvePoints = [];
-    render();
-    showToast('Curve cancelled ↩');
     return;
   }
   if (!GeoMemory.objects.length) { showToast('Nothing to undo!'); return; }
   GeoMemory.objects.pop();
   updateProps(); render();
   showToast('Undone ↩');
-}
-
-// Erase brush: removes any object whose geometry passes within radius px of pt
-function kidEraseBrushAt(sx, sy) {
-  const r = kidEraseRadiusPx();
-  const toRemove = new Set();
-  for (const o of GeoMemory.objects) {
-    if (o.type === 'LINE') {
-      const a = worldToScreen(o.x1, o.y1), b = worldToScreen(o.x2, o.y2);
-      const dx=b.x-a.x, dy=b.y-a.y, len2=dx*dx+dy*dy;
-      const t = len2>0 ? Math.max(0,Math.min(1,((sx-a.x)*dx+(sy-a.y)*dy)/len2)) : 0;
-      if (Math.hypot(sx-a.x-t*dx, sy-a.y-t*dy) < r) toRemove.add(o.id);
-    } else if (o.type === 'POLYLINE') {
-      for (let i=0; i<o.pts.length-1; i++) {
-        const a=worldToScreen(o.pts[i].x,o.pts[i].y), b=worldToScreen(o.pts[i+1].x,o.pts[i+1].y);
-        const dx=b.x-a.x, dy=b.y-a.y, len2=dx*dx+dy*dy;
-        const t=len2>0?Math.max(0,Math.min(1,((sx-a.x)*dx+(sy-a.y)*dy)/len2)):0;
-        if(Math.hypot(sx-a.x-t*dx,sy-a.y-t*dy)<r){toRemove.add(o.id);break;}
-      }
-    } else if (o.type === 'CIRCLE' || o.type === 'ARC') {
-      const cp=worldToScreen(o.cx,o.cy);
-      if(Math.hypot(sx-cp.x,sy-cp.y)<r+o.r*cam.zoom) toRemove.add(o.id);
-    }
-  }
-  if (toRemove.size) {
-    GeoMemory.objects = GeoMemory.objects.filter(o=>!toRemove.has(o.id));
-    updateProps(); render();
-  }
-}
-
-// Draw eraser cursor on canvas
-function kidDrawEraserCursor(sx, sy) {
-  const r = kidEraseRadiusPx();
-  ctx.save();
-  ctx.strokeStyle = 'rgba(160,172,196,0.7)';
-  ctx.lineWidth   = 1.5;
-  ctx.setLineDash([3,3]);
-  ctx.beginPath(); ctx.arc(sx, sy, r, 0, Math.PI*2); ctx.stroke();
-  ctx.setLineDash([]);
-  ctx.restore();
-}
-
-// Draw curve preview
-function kidDrawCurvePreview(sx, sy) {
-  if (!kidCurvePoints.length) return;
-  const pts = [...kidCurvePoints.map(p=>worldToScreen(p.x,p.y)), {x:sx,y:sy}];
-  const ls = KID_LAYERS[kidActiveLayer];
-  ctx.save();
-  ctx.strokeStyle = ls.color;
-  ctx.lineWidth   = kidLineWidth(kidActiveLayer);
-  ctx.setLineDash(ls.dash);
-  ctx.lineCap     = 'round';
-  ctx.lineJoin    = 'round';
-  ctx.globalAlpha = 0.6;
-  ctx.beginPath();
-  kidCardinalSplineScreen(pts, 0.4, ctx);
-  ctx.stroke();
-  ctx.setLineDash([]);
-  // Draw anchor dots
-  ctx.globalAlpha = 0.85;
-  pts.forEach((p,i) => {
-    ctx.fillStyle = i===pts.length-1 ? ls.color : 'rgba(255,255,255,0.7)';
-    ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI*2); ctx.fill();
-  });
-  ctx.restore();
-}
-
-function kidCardinalSplineScreen(pts, tension, ctx) {
-  if (pts.length < 2) return;
-  ctx.moveTo(pts[0].x, pts[0].y);
-  for (let i=0; i<pts.length-1; i++) {
-    const p0=pts[Math.max(i-1,0)], p1=pts[i], p2=pts[i+1], p3=pts[Math.min(i+2,pts.length-1)];
-    const cp1x=p1.x+(p2.x-p0.x)*tension, cp1y=p1.y+(p2.y-p0.y)*tension;
-    const cp2x=p2.x-(p3.x-p1.x)*tension, cp2y=p2.y-(p3.y-p1.y)*tension;
-    ctx.bezierCurveTo(cp1x,cp1y,cp2x,cp2y,p2.x,p2.y);
-  }
 }
 
 function updateKidLayerButtons() {
@@ -5940,6 +5654,7 @@ function kidShowComplete(m) {
 // Init missions on load
 window.addEventListener('load', function() {
   kidSetLayer('Solid');
+  kidSetMode('line');
 });
 
 </script>

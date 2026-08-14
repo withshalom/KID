@@ -38,7 +38,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KID™ — Kernel-Instructed Design</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fira+Code:wght@300;400;500;600&family=Syne:wght@700;800&display=swap');
 
 :root {
   /* KID — Frost theme: full cyan, no white pan. This is KID's default
@@ -62,6 +62,7 @@
   --t2:  #8fc4d4;
   --t3:  #5a8a99;
   --fm:     'Fira Code', monospace;
+  --fu:       'Atkinson Hyperlegible', sans-serif;
   --fd:       'Syne', sans-serif;
   --sidebar-w:     240px;
   --toolbar-h:     48px;
@@ -108,7 +109,7 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
   color: var(--accent);
 }
 #sidebar-toggle-btn .stb-icon { font-size:17px; line-height:1; flex-shrink:0; }
-#sidebar-toggle-btn .stb-label { font-family:var(--fm); font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; white-space:nowrap; }
+#sidebar-toggle-btn .stb-label { font-family:var(--fm); font-size:13px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; white-space:nowrap; }
 
 /* Backdrop scrim behind the open drawer */
 #sidebar-scrim { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:199; }
@@ -146,10 +147,10 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
 .mobile-mode #topbar { padding: 0 6px; }
 .mobile-mode .tb-menu { overflow-x:auto; scrollbar-width:none; }
 .mobile-mode .tb-menu::-webkit-scrollbar { display:none; }
-.mobile-mode .tb-menu-item { padding: 0 8px; font-size: 12px; }
+.mobile-mode .tb-menu-item { padding: 0 8px; font-size:14px; }
 .mobile-mode .tb-badge { display: none; }
 .mobile-mode .brand-sub { display: none; }
-.mobile-mode .tb-dd-item { padding: 10px 14px; font-size: 12px; } /* larger tap targets */
+.mobile-mode .tb-dd-item { padding: 10px 14px; font-size:14px; } /* larger tap targets */
 
 /* ── LAYOUT ── */
 #app { display:grid; grid-template-columns:var(--sidebar-w) 1fr; grid-template-rows:var(--toolbar-h) 32px 1fr var(--status-h); width:100vw; height:100vh; overflow:hidden; }
@@ -157,26 +158,26 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
 /* ── TOPBAR ── */
 #topbar { grid-column:1/-1; display:flex; align-items:center; background:var(--panel); border-bottom:1px solid var(--border); padding:0 12px; position:relative; z-index:30; }
 .brand { display:flex; align-items:center; gap:8px; margin-right:20px; font-family:var(--fm); font-weight:700; font-size:14px; color:var(--accent); letter-spacing:0.04em; user-select:none; }
-.brand-sub { font-size:9px; color:var(--t3); letter-spacing:0.12em; text-transform:uppercase; font-weight:400; }
+.brand-sub { font-size:12px; color:var(--t3); letter-spacing:0.12em; text-transform:uppercase; font-weight:400; }
 .tb-menu { display:flex; align-items:center; }
-.tb-menu-item { padding:0 12px; height:var(--toolbar-h); display:flex; align-items:center; font-size:12px; color:var(--t2); cursor:pointer; transition:color 0.15s,background 0.15s; letter-spacing:0.02em; position:relative; }
+.tb-menu-item { padding:0 12px; height:var(--toolbar-h); display:flex; align-items:center; font-size:14px; color:var(--t2); cursor:pointer; transition:color 0.15s,background 0.15s; letter-spacing:0.02em; position:relative; }
 .tb-menu-item:hover { color:var(--t1); background:var(--hover); }
 .tb-menu-item.open { color:var(--t1); background:var(--hover); }
 .tb-sep { width:1px; height:18px; background:var(--border); margin:0 4px; }
 .tb-right { margin-left:auto; display:flex; align-items:center; gap:8px; }
-.tb-badge { font-family:var(--fm); font-size:10px; color:var(--t3); background:var(--panel2); border:1px solid var(--border); padding:2px 7px; border-radius:3px; letter-spacing:0.06em; }
+.tb-badge { font-family:var(--fm); font-size:13px; color:var(--t3); background:var(--panel2); border:1px solid var(--border); padding:2px 7px; border-radius:3px; letter-spacing:0.06em; }
 
 /* Topbar dropdown */
 .tb-dropdown { position:absolute; top:100%; left:0; background:var(--panel); border:1px solid var(--border-hi); border-radius:0 0 4px 4px; min-width:180px; z-index:200; display:none; flex-direction:column; box-shadow:0 8px 24px rgba(0,0,0,0.6); padding:4px 0; }
 .tb-dropdown.open { display:flex; }
-.tb-dd-item { padding:7px 14px; font-family:var(--fm); font-size:11px; color:var(--t2); cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:16px; transition:background 0.1s,color 0.1s; }
+.tb-dd-item { padding:7px 14px; font-family:var(--fu); font-size:13px; color:var(--t2); cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:16px; transition:background 0.1s,color 0.1s; }
 .tb-dd-item:hover { background:var(--hover); color:var(--t1); }
-.tb-dd-item .dd-key { color:var(--t3); font-size:9px; }
+.tb-dd-item .dd-key { color:var(--t3); font-size:12px; }
 .tb-dd-sep { height:1px; background:var(--border); margin:3px 0; }
 
 /* ── SIDEBAR ── */
 #sidebar { background:var(--panel); border-right:1px solid var(--border); display:flex; flex-direction:column; overflow:hidden; position:relative; z-index:10; height:100%; flex-shrink:0; }
-.section-head { padding:8px 14px 5px; font-family:var(--fm); font-size:9px; font-weight:500; color:var(--t3); letter-spacing:0.14em; text-transform:uppercase; border-bottom:1px solid var(--border); flex-shrink:0; }
+.section-head { padding:8px 14px 5px; font-family:var(--fm); font-size:12px; font-weight:500; color:var(--t3); letter-spacing:0.14em; text-transform:uppercase; border-bottom:1px solid var(--border); flex-shrink:0; }
 .tool-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; padding:6px; background:var(--border); border-bottom:1px solid var(--border); flex-shrink:0; }
 .tool-btn { background:var(--panel2); border:none; cursor:pointer; padding:8px 4px; display:flex; flex-direction:column; align-items:center; gap:3px; transition:background 0.15s,box-shadow 0.15s; position:relative; overflow:hidden; }
 .tool-btn:hover { background:var(--hover); }
@@ -184,20 +185,20 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
 .tool-btn.active::after { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--accent); box-shadow:0 0 8px var(--accent); }
 .tool-icon { width:22px; height:22px; display:flex; align-items:center; justify-content:center; }
 .tool-icon svg { width:16px; height:16px; }
-.tool-label { font-size:8px; font-family:var(--fm); color:var(--t2); letter-spacing:0.05em; }
+.tool-label { font-size:11px; font-family:var(--fm); color:var(--t2); letter-spacing:0.05em; }
 .tool-btn.active .tool-label { color:var(--accent); }
 
 /* Offset bar */
 #offset-bar { display:none; align-items:center; gap:6px; padding:5px 8px; background:var(--panel2); border-bottom:1px solid var(--border); flex-shrink:0; }
 #offset-bar.visible { display:flex; }
-#offset-bar label { font-family:var(--fm); font-size:9px; color:var(--t3); letter-spacing:0.08em; text-transform:uppercase; white-space:nowrap; }
-#offset-dist-input { background:var(--panel); border:1px solid var(--border-hi); border-radius:3px; color:var(--accent); font-family:var(--fm); font-size:11px; padding:3px 6px; width:60px; outline:none; text-align:right; }
+#offset-bar label { font-family:var(--fm); font-size:12px; color:var(--t3); letter-spacing:0.08em; text-transform:uppercase; white-space:nowrap; }
+#offset-dist-input { background:var(--panel); border:1px solid var(--border-hi); border-radius:3px; color:var(--accent); font-family:var(--fm); font-size:13px; padding:3px 6px; width:60px; outline:none; text-align:right; }
 #offset-dist-input:focus { border-color:var(--accent); }
-#offset-dist-unit { font-family:var(--fm); font-size:9px; color:var(--t3); }
+#offset-dist-unit { font-family:var(--fm); font-size:12px; color:var(--t3); }
 
 /* File ops */
 .file-ops { padding:6px; display:flex; flex-direction:column; gap:3px; border-bottom:1px solid var(--border); flex-shrink:0; }
-.op-btn { display:flex; align-items:center; gap:8px; padding:6px 10px; background:var(--panel2); border:1px solid var(--border); border-radius:4px; color:var(--t2); font-size:11px; font-family:var(--fm); cursor:pointer; transition:all 0.15s; letter-spacing:0.04em; }
+.op-btn { display:flex; align-items:center; gap:8px; padding:6px 10px; background:var(--panel2); border:1px solid var(--border); border-radius:4px; color:var(--t2); font-size:13px; font-family:var(--fm); cursor:pointer; transition:all 0.15s; letter-spacing:0.04em; }
 .op-btn:hover { background:var(--hover); border-color:var(--border-hi); color:var(--t1); }
 .op-btn.dxf { color:var(--green); border-color:var(--green-dim); }
 .op-btn.dxf:hover { background:rgba(0,255,157,0.06); border-color:var(--green); }
@@ -206,11 +207,11 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
 
 /* Coord input panel */
 #coord-panel { flex-shrink:0; border-bottom:1px solid var(--border); }
-#coord-panel-head { padding:6px 14px 5px; font-family:var(--fm); font-size:9px; color:var(--t3); letter-spacing:0.14em; text-transform:uppercase; cursor:pointer; display:flex; justify-content:space-between; align-items:center; }
+#coord-panel-head { padding:6px 14px 5px; font-family:var(--fm); font-size:12px; color:var(--t3); letter-spacing:0.14em; text-transform:uppercase; cursor:pointer; display:flex; justify-content:space-between; align-items:center; }
 #coord-panel-head:hover { color:var(--t2); }
 #coord-panel-body { padding:6px 8px 8px; display:none; }
 #coord-panel-body.open { display:block; }
-.coord-example { font-family:var(--fm); font-size:9px; color:var(--t3); margin-bottom:4px; line-height:1.6; }
+.coord-example { font-family:var(--fm); font-size:12px; color:var(--t3); margin-bottom:4px; line-height:1.6; }
 .coord-example b { color:var(--accent); }
 .coord-example i { color:var(--amber); font-style:normal; }
 .coord-example em { color:var(--green); font-style:normal; }
@@ -221,15 +222,15 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
 .props-panel::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
 .prop-row { display:flex; justify-content:space-between; align-items:center; padding:3px 8px; border-radius:3px; margin-bottom:1px; }
 .prop-row:hover { background:var(--hover); }
-.prop-key { font-size:10px; color:var(--t3); font-family:var(--fm); }
-.prop-val { font-size:10px; color:var(--t2); font-family:var(--fm); }
+.prop-key { font-size:13px; color:var(--t3); font-family:var(--fm); }
+.prop-val { font-size:13px; color:var(--t2); font-family:var(--fm); }
 .prop-val.accent { color:var(--accent); }
 .prop-val.green  { color:var(--green); }
 .layer-row { display:flex; align-items:center; gap:8px; padding:4px 8px; cursor:pointer; border-radius:3px; margin-bottom:2px; }
 .layer-row:hover { background:var(--hover); }
 .layer-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
-.layer-name { font-size:11px; font-family:var(--fm); color:var(--t2); flex:1; }
-.layer-count { font-size:10px; color:var(--t3); font-family:var(--fm); }
+.layer-name { font-size:13px; font-family:var(--fm); color:var(--t2); flex:1; }
+.layer-count { font-size:13px; color:var(--t3); font-family:var(--fm); }
 
 /* ── CANVAS AREA ── */
 #canvas-wrap { position:relative; overflow:hidden; background:#0a2e38; flex:1; min-width:0; }
@@ -239,16 +240,16 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
 .snap-ring { position:absolute; pointer-events:none; width:14px; height:14px; border:2.5px solid #4fc8e0; border-radius:50%; box-shadow:0 0 8px rgba(79,200,224,0.5); transform:translate(-50%,-50%); display:none; }
 
 /* ── COORD OVERLAY ── */
-#coord-overlay { position:absolute; bottom:8px; right:8px; background:rgba(244,246,251,0.95); border:1px solid var(--border); backdrop-filter:blur(4px); padding:5px 10px; border-radius:6px; font-family:var(--fm); font-size:12px; color:var(--t2); pointer-events:none; display:flex; gap:12px; letter-spacing:0.04em; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
+#coord-overlay { position:absolute; bottom:8px; right:8px; background:var(--panel); border:1px solid var(--border-hi); backdrop-filter:blur(4px); padding:5px 10px; border-radius:6px; font-family:var(--fm); font-size:14px; color:var(--t2); pointer-events:none; display:flex; gap:12px; letter-spacing:0.04em; box-shadow:0 2px 8px rgba(0,0,0,0.4); }
 #coord-overlay span { color:var(--accent); }
 .coord-label { color:var(--t3); }
 
 /* ── CONTEXT HINT ── */
-#hint { position:absolute; top:10px; left:50%; transform:translateX(-50%); background:rgba(244,246,251,0.97); border:1px solid var(--border); border-radius:6px; padding:6px 14px; font-size:11px; font-family:var(--fm); color:var(--t2); pointer-events:none; white-space:nowrap; letter-spacing:0.04em; box-shadow:0 2px 10px rgba(0,0,0,0.1); }
+#hint { position:absolute; top:10px; left:50%; transform:translateX(-50%); background:var(--panel); border:1px solid var(--border-hi); border-radius:6px; padding:6px 14px; font-size:13px; font-family:var(--fu); color:var(--t2); pointer-events:none; white-space:nowrap; letter-spacing:0.04em; box-shadow:0 2px 10px rgba(0,0,0,0.4); }
 #hint span { color:#4fc8e0; font-weight:700; }
 
 /* ── STATUS BAR ── */
-#statusbar { grid-column:1/-1; background:var(--panel); border-top:1px solid var(--border); display:flex; align-items:center; padding:0 12px; font-family:var(--fm); font-size:10px; color:var(--t3); letter-spacing:0.04em; }
+#statusbar { grid-column:1/-1; background:var(--panel); border-top:1px solid var(--border); display:flex; align-items:center; padding:0 12px; font-family:var(--fm); font-size:13px; color:var(--t3); letter-spacing:0.04em; }
 .sb-item { padding:0 10px; border-right:1px solid var(--border); height:100%; display:flex; align-items:center; gap:5px; }
 .sb-item:first-child { padding-left:0; }
 .sb-val { color:var(--t2); }
@@ -259,7 +260,7 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
 .sb-cc {
   display: flex; align-items: center; gap: 5px;
   padding: 0 12px; border-left: 1px solid var(--border);
-  font-family: var(--fm); font-size: 9px; color: var(--t3);
+  font-family: var(--fm); font-size:12px; color: var(--t3);
   letter-spacing: 0.04em; white-space: nowrap;
 }
 .cc-link {
@@ -269,16 +270,16 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
 .cc-link:hover { color: var(--accent); text-decoration: underline; }
 
 /* ── TOAST ── */
-#toast { position:fixed; bottom:46px; left:50%; transform:translateX(-50%) translateY(10px); background:var(--panel2); border:1px solid var(--border-hi); border-radius:4px; padding:6px 14px; font-size:11px; font-family:var(--fm); color:var(--t1); pointer-events:none; opacity:0; transition:opacity 0.18s,transform 0.18s; z-index:999; }
+#toast { position:fixed; bottom:46px; left:50%; transform:translateX(-50%) translateY(10px); background:var(--panel2); border:1px solid var(--border-hi); border-radius:4px; padding:6px 14px; font-size:13px; font-family:var(--fm); color:var(--t1); pointer-events:none; opacity:0; transition:opacity 0.18s,transform 0.18s; z-index:999; }
 #toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
 
 /* ── DYNAMIC INPUT ── */
 #dyn-input-wrap { position:absolute; display:none; z-index:80; pointer-events:auto; }
 #dyn-input-box { background:var(--panel); border:1px solid var(--accent); border-radius:3px; box-shadow:0 0 12px rgba(0,212,255,0.3),0 2px 8px rgba(0,0,0,0.7); display:flex; align-items:center; min-width:170px; overflow:hidden; }
-#dyn-input-prefix { background:var(--panel2); border-right:1px solid var(--border); padding:5px 7px; font-family:var(--fm); font-size:9px; color:var(--accent); letter-spacing:0.05em; white-space:nowrap; flex-shrink:0; min-width:42px; text-align:center; }
-#dyn-input-field { background:transparent; border:none; outline:none; padding:5px 8px; font-family:var(--fm); font-size:11px; color:var(--t1); width:130px; caret-color:var(--accent); }
+#dyn-input-prefix { background:var(--panel2); border-right:1px solid var(--border); padding:5px 7px; font-family:var(--fm); font-size:12px; color:var(--accent); letter-spacing:0.05em; white-space:nowrap; flex-shrink:0; min-width:42px; text-align:center; }
+#dyn-input-field { background:transparent; border:none; outline:none; padding:5px 8px; font-family:var(--fm); font-size:13px; color:var(--t1); width:130px; caret-color:var(--accent); }
 #dyn-input-field::placeholder { color:var(--t3); }
-#dyn-input-hint { position:absolute; top:calc(100% + 4px); left:0; background:rgba(8,10,14,0.95); border:1px solid var(--border); border-radius:3px; padding:3px 8px; font-family:var(--fm); font-size:9px; color:var(--t3); white-space:nowrap; pointer-events:none; }
+#dyn-input-hint { position:absolute; top:calc(100% + 4px); left:0; background:rgba(8,10,14,0.95); border:1px solid var(--border); border-radius:3px; padding:3px 8px; font-family:var(--fm); font-size:12px; color:var(--t3); white-space:nowrap; pointer-events:none; }
 #dyn-input-hint b { color:var(--accent); }
 #dyn-input-hint i { color:var(--amber); font-style:normal; }
 #dyn-input-hint em { color:var(--green); font-style:normal; }
@@ -286,11 +287,11 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
 /* ── CONTEXT MENU ── */
 #ctx-menu { position:fixed; display:none; flex-direction:column; background:var(--panel); border:1px solid var(--border-hi); border-radius:5px; box-shadow:0 10px 36px rgba(0,0,0,0.75),0 0 0 1px rgba(0,212,255,0.05); min-width:200px; z-index:500; overflow:hidden; padding:4px 0; }
 #ctx-menu.open { display:flex; }
-.ctx-head { padding:4px 12px 3px; font-family:var(--fm); font-size:8px; color:var(--t3); letter-spacing:0.14em; text-transform:uppercase; }
-.ctx-item { display:flex; align-items:center; gap:10px; padding:7px 14px; font-family:var(--fm); font-size:11px; color:var(--t2); cursor:pointer; transition:background 0.1s,color 0.1s; border:none; background:none; width:100%; text-align:left; }
+.ctx-head { padding:4px 12px 3px; font-family:var(--fm); font-size:11px; color:var(--t3); letter-spacing:0.14em; text-transform:uppercase; }
+.ctx-item { display:flex; align-items:center; gap:10px; padding:7px 14px; font-family:var(--fu); font-size:13px; color:var(--t2); cursor:pointer; transition:background 0.1s,color 0.1s; border:none; background:none; width:100%; text-align:left; }
 .ctx-item:hover { background:var(--hover); color:var(--t1); }
 .ctx-item svg { width:13px; height:13px; flex-shrink:0; opacity:0.7; }
-.ctx-item .ctx-key { margin-left:auto; font-size:9px; color:var(--t3); }
+.ctx-item .ctx-key { margin-left:auto; font-size:12px; color:var(--t3); }
 .ctx-item.hi { color:var(--accent); }
 .ctx-item.hi:hover { background:rgba(0,212,255,0.08); }
 .ctx-sep { height:1px; background:var(--border); margin:3px 0; }
@@ -306,16 +307,16 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
   flex-wrap: wrap;
 }
 #rotate-bar.visible { display: flex; }
-#rotate-bar label { font-family:var(--fm); font-size:9px; color:var(--t3); letter-spacing:0.08em; text-transform:uppercase; white-space:nowrap; }
+#rotate-bar label { font-family:var(--fm); font-size:12px; color:var(--t3); letter-spacing:0.08em; text-transform:uppercase; white-space:nowrap; }
 #rotate-angle-input {
   background:var(--panel); border:1px solid var(--border-hi); border-radius:3px;
-  color:var(--accent); font-family:var(--fm); font-size:11px;
+  color:var(--accent); font-family:var(--fm); font-size:13px;
   padding:3px 6px; width:62px; outline:none; text-align:right;
 }
 #rotate-angle-input:focus { border-color:var(--accent); }
 .rot-btn {
   background:var(--panel); border:1px solid var(--border); border-radius:3px;
-  color:var(--t2); font-family:var(--fm); font-size:9px;
+  color:var(--t2); font-family:var(--fm); font-size:12px;
   padding:3px 6px; cursor:pointer; transition:all 0.12s; white-space:nowrap;
   letter-spacing:0.04em;
 }
@@ -329,7 +330,7 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
 /* ── UNIT TOGGLE ── */
 #unit-toggle {
   font-family: var(--fm);
-  font-size: 10px;
+  font-size:13px;
   background: var(--panel2);
   border: 1px solid var(--border-hi);
   border-radius: 3px;
@@ -376,7 +377,7 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
   border-bottom: 1px solid var(--border);
 }
 #dxf-import-dialog .dlg-title {
-  font-size: 11px; font-weight: 500; color: var(--accent);
+  font-size:13px; font-weight: 500; color: var(--accent);
   letter-spacing: 0.08em; text-transform: uppercase;
 }
 #dxf-import-dialog .dlg-close {
@@ -391,18 +392,18 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
   border-radius: 4px; padding: 10px 12px; margin-bottom: 14px;
 }
 .dlg-file-info .fi-name {
-  font-size: 11px; color: var(--t1); margin-bottom: 6px;
+  font-size:13px; color: var(--t1); margin-bottom: 6px;
   word-break: break-all; letter-spacing: 0.02em;
 }
 .dlg-file-info .fi-row {
   display: flex; justify-content: space-between;
-  font-size: 10px; color: var(--t3); margin-bottom: 2px;
+  font-size:13px; color: var(--t3); margin-bottom: 2px;
 }
 .dlg-file-info .fi-row span { color: var(--t2); }
 .dlg-file-info .fi-row span.ok  { color: var(--green); }
 .dlg-file-info .fi-row span.warn { color: var(--amber); }
 .dlg-section-label {
-  font-size: 9px; color: var(--t3); letter-spacing: 0.12em;
+  font-size:12px; color: var(--t3); letter-spacing: 0.12em;
   text-transform: uppercase; margin-bottom: 8px;
 }
 .dlg-unit-grid {
@@ -412,14 +413,14 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
 .dlg-unit-btn {
   background: var(--panel2); border: 1px solid var(--border);
   border-radius: 4px; padding: 8px 6px;
-  font-family: var(--fm); font-size: 10px;
+  font-family: var(--fm); font-size:13px;
   color: var(--t2); cursor: pointer;
   transition: all 0.12s; text-align: center; letter-spacing: 0.04em;
 }
 .dlg-unit-btn:hover { background: var(--hover); border-color: var(--border-hi); color: var(--t1); }
 .dlg-unit-btn.selected { background: var(--accent-glow); border-color: var(--accent); color: var(--accent); }
-.dlg-unit-btn .dub-label { font-size: 12px; font-weight: 700; display: block; margin-bottom: 2px; }
-.dlg-unit-btn .dub-sub   { font-size: 8px; color: inherit; opacity: 0.7; display: block; }
+.dlg-unit-btn .dub-label { font-size:14px; font-weight: 700; display: block; margin-bottom: 2px; }
+.dlg-unit-btn .dub-sub   { font-size:11px; color: inherit; opacity: 0.7; display: block; }
 .dlg-merge-grid {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 6px; margin-bottom: 16px;
@@ -427,20 +428,20 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
 .dlg-merge-btn {
   background: var(--panel2); border: 1px solid var(--border);
   border-radius: 4px; padding: 8px 10px;
-  font-family: var(--fm); font-size: 10px;
+  font-family: var(--fm); font-size:13px;
   color: var(--t2); cursor: pointer;
   transition: all 0.12s; text-align: left; letter-spacing: 0.03em;
 }
 .dlg-merge-btn:hover { background: var(--hover); border-color: var(--border-hi); color: var(--t1); }
 .dlg-merge-btn.selected { background: var(--accent-glow); border-color: var(--accent); color: var(--accent); }
-.dlg-merge-btn .dmb-title { font-size: 10px; font-weight: 600; display: block; margin-bottom: 2px; }
-.dlg-merge-btn .dmb-sub   { font-size: 8px; opacity: 0.75; display: block; }
+.dlg-merge-btn .dmb-title { font-size:13px; font-weight: 600; display: block; margin-bottom: 2px; }
+.dlg-merge-btn .dmb-sub   { font-size:11px; opacity: 0.75; display: block; }
 .dlg-actions {
   display: flex; gap: 8px; justify-content: flex-end;
   border-top: 1px solid var(--border); padding-top: 14px;
 }
 .dlg-btn {
-  font-family: var(--fm); font-size: 10px; letter-spacing: 0.06em;
+  font-family: var(--fm); font-size:13px; letter-spacing: 0.06em;
   padding: 7px 16px; border-radius: 4px; cursor: pointer;
   transition: all 0.12s; border: 1px solid var(--border);
   text-transform: uppercase;
@@ -484,12 +485,12 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
   letter-spacing: 0.06em; margin-bottom: 6px;
 }
 .splash-sub {
-  font-size: 10px; color: var(--t3);
+  font-size:13px; color: var(--t3);
   letter-spacing: 0.14em; text-transform: uppercase;
 }
 #splash-dialog .dlg-body { padding: 20px; }
 .splash-prompt {
-  font-size: 11px; color: var(--t2);
+  font-size:13px; color: var(--t2); font-family: var(--fu);
   text-align: center; margin-bottom: 16px; letter-spacing: 0.04em;
   line-height: 1.6;
 }
@@ -517,10 +518,10 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
 }
 .splash-unit-btn.mm-btn .sub-unit { color: var(--accent); }
 .splash-unit-btn.in-btn .sub-unit { color: var(--amber); }
-.splash-unit-btn .sub-name { font-size: 9px; color: var(--t3); letter-spacing: 0.1em; text-transform: uppercase; }
-.splash-unit-btn .sub-example { font-size: 10px; color: var(--t2); }
+.splash-unit-btn .sub-name { font-size:12px; color: var(--t3); letter-spacing: 0.1em; text-transform: uppercase; }
+.splash-unit-btn .sub-example { font-size:13px; color: var(--t2); }
 .splash-note {
-  text-align: center; font-size: 9px; color: var(--t3);
+  text-align: center; font-size:12px; color: var(--t3); font-family: var(--fu);
   letter-spacing: 0.06em; line-height: 1.5;
 }
 
@@ -546,7 +547,7 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
   background: var(--panel2);
   border-bottom: 1px solid var(--border);
   padding: 7px 12px;
-  font-size: 9px; color: var(--accent);
+  font-size:12px; color: var(--accent);
   letter-spacing: 0.12em; text-transform: uppercase;
   display: flex; align-items: center; gap: 6px;
 }
@@ -562,11 +563,11 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
   min-width: 0;
 }
 #offset-popup-input:focus { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent-glow); }
-.op-unit-label { font-size: 11px; color: var(--t3); flex-shrink: 0; }
-.op-hint { font-size: 9px; color: var(--t3); letter-spacing: 0.06em; margin-bottom: 10px; line-height: 1.5; }
+.op-unit-label { font-size:13px; color: var(--t3); flex-shrink: 0; }
+.op-hint { font-size:12px; color: var(--t3); letter-spacing: 0.06em; margin-bottom: 10px; line-height: 1.5; }
 .op-hint b { color: var(--t2); }
 .op-actions { display: flex; gap: 6px; }
-.op-actions .dlg-btn { flex: 1; padding: 6px 8px; font-size: 9px; }
+.op-actions .dlg-btn { flex: 1; padding: 6px 8px; font-size:12px; }
 /* ── SCAD EXPORT DIALOG ── */
 #scad-export-overlay {
   position: fixed; inset: 0;
@@ -592,7 +593,7 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
   border-bottom: 1px solid var(--border);
 }
 #scad-export-dialog .dlg-title {
-  font-size: 11px; font-weight: 500; color: var(--amber);
+  font-size:13px; font-weight: 500; color: var(--amber);
   letter-spacing: 0.08em; text-transform: uppercase;
 }
 #scad-export-dialog .dlg-close {
@@ -603,7 +604,7 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
 #scad-export-dialog .dlg-close:hover { color: var(--t1); }
 #scad-export-dialog .dlg-body { padding: 14px 16px; }
 .scad-section-label {
-  font-size: 9px; color: var(--t3); letter-spacing: 0.12em;
+  font-size:12px; color: var(--t3); letter-spacing: 0.12em;
   text-transform: uppercase; margin-bottom: 8px; margin-top: 12px;
 }
 .scad-section-label:first-child { margin-top: 0; }
@@ -622,27 +623,27 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
   border-color: var(--amber); background: rgba(255,170,0,0.08);
 }
 .scad-mode-btn .smb-title {
-  font-size: 10px; color: var(--t1); font-weight: 500; letter-spacing: 0.04em;
+  font-size:13px; color: var(--t1); font-weight: 500; letter-spacing: 0.04em;
 }
 .scad-mode-btn.selected .smb-title { color: var(--amber); }
 .scad-mode-btn .smb-sub {
-  font-size: 8px; color: var(--t3); line-height: 1.3; letter-spacing: 0.03em;
+  font-size:11px; color: var(--t3); line-height: 1.3; letter-spacing: 0.03em;
 }
 .scad-extrude-row {
   display: flex; align-items: center; gap: 8px;
   padding: 8px 0 4px; border-top: 1px solid var(--border); margin-top: 10px;
 }
 .scad-extrude-row label {
-  font-size: 9px; color: var(--t3); letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;
+  font-size:12px; color: var(--t3); letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;
 }
 #scad-extrude-h {
   background: var(--panel); border: 1px solid var(--border-hi); border-radius: 3px;
-  color: var(--amber); font-family: var(--fm); font-size: 11px;
+  color: var(--amber); font-family: var(--fm); font-size:13px;
   padding: 4px 8px; width: 70px; outline: none; text-align: right;
 }
 #scad-extrude-h:focus { border-color: var(--amber); }
 .scad-hint {
-  font-size: 9px; color: var(--t3); line-height: 1.6; margin-top: 10px;
+  font-size:12px; color: var(--t3); line-height: 1.6; margin-top: 10px;
   padding: 8px 10px; background: var(--panel2); border-radius: 4px;
   border: 1px solid var(--border);
 }
@@ -652,6 +653,7 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
 /* ── KADsuite suite tokens (override/align) ── */
 :root {
   --fm: 'Fira Code', monospace;
+  --fu: 'Atkinson Hyperlegible', sans-serif;
   --fd: 'Syne', sans-serif;
 }
 
@@ -665,7 +667,7 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
 }
 .tab-item {
   display: flex; align-items: center; gap: 6px;
-  padding: 0 14px; cursor: pointer; font-size: 10px;
+  padding: 0 14px; cursor: pointer; font-size:13px;
   color: var(--t2); letter-spacing: 0.1em; text-transform: uppercase;
   border-bottom: 2px solid transparent; transition: all 0.15s;
 }
@@ -676,7 +678,7 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
 .tab-mark {
   width: 14px; height: 14px; border-radius: 3px;
   background: var(--t3); display: flex; align-items: center; justify-content: center;
-  font-size: 6px; color: #000; font-weight: 700; flex-shrink: 0;
+  font-size:9px; color: #000; font-weight: 700; flex-shrink: 0;
 }
 
 /* ── Model / KANVAS pane wrappers ── */
@@ -708,7 +710,7 @@ body.kanvas-mode #model-pane  { display: none; }
 .kv-tbtn .kv-ti { width: 18px; height: 18px; }
 .kv-tbtn .kv-ti svg { width: 100%; height: 100%; stroke: var(--t2); fill: none; stroke-width: 1.5; }
 .kv-tbtn.act .kv-ti svg { stroke: #0090a8; }
-.kv-tbtn .kv-tl { font-family: var(--fm); font-size: 7px; color: var(--t3); letter-spacing: 0.12em; }
+.kv-tbtn .kv-tl { font-family: var(--fm); font-size:10px; color: var(--t3); letter-spacing: 0.12em; }
 .kv-tbtn.act .kv-tl { color: #0090a8; }
 
 /* ── Dimensioning standard buttons ── */
@@ -716,7 +718,7 @@ body.kanvas-mode #model-pane  { display: none; }
   display: none; gap: 3px; padding: 4px 8px; flex-wrap: wrap;
 }
 .kv-dim-btn {
-  font-family: var(--fm); font-size: 8px; padding: 3px 7px;
+  font-family: var(--fm); font-size:11px; padding: 3px 7px;
   background: rgba(255,255,255,0.04); border: 1px solid var(--border);
   border-radius: 4px; color: var(--t2); cursor: pointer; letter-spacing: 0.06em;
 }
@@ -726,17 +728,17 @@ body.kanvas-mode #model-pane  { display: none; }
 .kv-weld-row { display: none; flex-direction: column; gap: 4px; padding: 4px 8px; }
 .kv-weld-select {
   width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-  border-radius: 4px; color: var(--t2); font-family: var(--fm); font-size: 9px;
+  border-radius: 4px; color: var(--t2); font-family: var(--fm); font-size:12px;
   padding: 3px 6px; outline: none;
 }
 
 /* ── KV brush controls ── */
 .kv-brush-panel { padding: 8px; border-top: 1px solid rgba(255,255,255,0.05); }
 .kv-sl-row { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; }
-.kv-sl-lbl { font-family: var(--fm); font-size: 8px; color: var(--t3);
+.kv-sl-lbl { font-family: var(--fm); font-size:11px; color: var(--t3);
   letter-spacing: 0.1em; width: 36px; flex-shrink: 0; text-transform: uppercase; }
 .kv-sl { flex: 1; height: 2px; accent-color: #0090a8; cursor: pointer; }
-.kv-sl-val { font-family: var(--fm); font-size: 8px; color: var(--t2); min-width: 26px; text-align: right; }
+.kv-sl-val { font-family: var(--fm); font-size:11px; color: var(--t2); min-width: 26px; text-align: right; }
 
 /* ── KV color ── */
 .kv-color-row { display: flex; align-items: center; gap: 6px; padding: 6px 8px; }
@@ -751,14 +753,14 @@ body.kanvas-mode #model-pane  { display: none; }
 .kv-page-sel {
   width: calc(100% - 16px); margin: 0 8px 8px;
   background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-  border-radius: 4px; color: var(--t2); font-family: var(--fm); font-size: 9px;
+  border-radius: 4px; color: var(--t2); font-family: var(--fm); font-size:12px;
   padding: 4px 6px; outline: none;
 }
 
 /* ── KV layers ── */
 .kv-layer-item {
   display: flex; align-items: center; gap: 6px; padding: 5px 8px;
-  font-family: var(--fm); font-size: 9px; color: var(--t2);
+  font-family: var(--fm); font-size:12px; color: var(--t2);
   cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.03);
   transition: background 0.1s;
 }
@@ -770,7 +772,7 @@ body.kanvas-mode #model-pane  { display: none; }
 .kv-export-row { display: flex; flex-direction: column; gap: 3px; padding: 8px; margin-top: auto; border-top: 1px solid rgba(255,255,255,0.05); }
 .kv-export-btn {
   display: flex; align-items: center; gap: 6px; padding: 6px 10px;
-  font-family: var(--fm); font-size: 9px; letter-spacing: 0.06em;
+  font-family: var(--fm); font-size:12px; letter-spacing: 0.06em;
   background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
   border-radius: 5px; cursor: pointer; color: var(--t2); transition: all 0.13s;
 }
@@ -905,7 +907,7 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
       display:flex;align-items:center;gap:6px;padding:5px 12px;
       background:linear-gradient(135deg,#0d5568,#2f96ab);
       border:none;border-radius:6px;color:#eafcff;
-      font-family:'Fira Code',monospace;font-size:11px;font-weight:700;
+      font-family:'Fira Code',monospace;font-size:13px;font-weight:700;
       cursor:pointer;letter-spacing:0.04em;
       box-shadow:0 2px 8px rgba(79,200,224,0.3);transition:all 0.15s;
     " onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 4px 14px rgba(79,200,224,0.4)'"
@@ -948,13 +950,13 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
     <button id="kid-mode-line" onclick="kidSetMode('line')"
       style="flex:1;padding:8px 4px;border-radius:6px;border:2px solid var(--accent);
       background:var(--accent-glow);color:var(--accent);font-family:var(--fm);
-      font-size:10px;font-weight:700;cursor:pointer;transition:all 0.12s;letter-spacing:0.06em;">
+      font-size:13px;font-weight:700;cursor:pointer;transition:all 0.12s;letter-spacing:0.06em;">
       — LINES
     </button>
     <button id="kid-mode-curve" onclick="kidSetMode('curve')"
       style="flex:1;padding:8px 4px;border-radius:6px;border:2px solid var(--border);
       background:transparent;color:var(--t3);font-family:var(--fm);
-      font-size:10px;font-weight:700;cursor:pointer;transition:all 0.12s;letter-spacing:0.06em;">
+      font-size:13px;font-weight:700;cursor:pointer;transition:all 0.12s;letter-spacing:0.06em;">
       ~ CURVES
     </button>
   </div>
@@ -963,25 +965,25 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
   <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:10px;">
     <button id="kid-layer-solid" onclick="kidLayerBtn('Solid')"
       style="width:100%;padding:10px 10px;border-radius:6px;border:2px solid #ff8800;
-      background:#ff8800;color:#2a1200;font-family:var(--fm);font-size:11px;font-weight:700;
+      background:#ff8800;color:#2a1200;font-family:var(--fm);font-size:13px;font-weight:700;
       cursor:pointer;transition:all 0.12s;text-align:left;letter-spacing:0.04em;">
       ⬛ Solid
     </button>
     <button id="kid-layer-hidden" onclick="kidLayerBtn('Hidden')"
       style="width:100%;padding:10px 10px;border-radius:6px;border:2px solid rgba(239,68,68,0.4);
-      background:transparent;color:#ef4444;font-family:var(--fm);font-size:11px;font-weight:700;
+      background:transparent;color:#ef4444;font-family:var(--fm);font-size:13px;font-weight:700;
       cursor:pointer;transition:all 0.12s;text-align:left;letter-spacing:0.04em;">
       🔴 Hidden
     </button>
     <button id="kid-layer-center" onclick="kidLayerBtn('Center')"
       style="width:100%;padding:10px 10px;border-radius:6px;border:2px solid rgba(245,158,11,0.4);
-      background:transparent;color:#f59e0b;font-family:var(--fm);font-size:11px;font-weight:700;
+      background:transparent;color:#f59e0b;font-family:var(--fm);font-size:13px;font-weight:700;
       cursor:pointer;transition:all 0.12s;text-align:left;letter-spacing:0.04em;">
       🟡 Center
     </button>
     <button id="kid-layer-dim" onclick="kidLayerBtn('Dim')"
       style="width:100%;padding:10px 10px;border-radius:6px;border:2px solid rgba(57,255,20,0.35);
-      background:transparent;color:#39ff14;font-family:var(--fm);font-size:11px;font-weight:700;
+      background:transparent;color:#39ff14;font-family:var(--fm);font-size:13px;font-weight:700;
       cursor:pointer;transition:all 0.12s;text-align:left;letter-spacing:0.04em;">
       📐 Dimension
     </button>
@@ -991,13 +993,13 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
   <div style="display:flex;gap:4px;">
     <button onclick="setTool('select')"
       style="flex:1;padding:9px 6px;border-radius:6px;border:2px solid var(--border);
-      background:transparent;color:var(--t2);font-family:var(--fm);font-size:10px;font-weight:700;
+      background:transparent;color:var(--t2);font-family:var(--fm);font-size:13px;font-weight:700;
       cursor:pointer;transition:all 0.12s;letter-spacing:0.04em;">
       ✛ Select
     </button>
     <button onclick="kidDeleteLast()"
       style="flex:1;padding:9px 6px;border-radius:6px;border:2px solid rgba(239,68,68,0.3);
-      background:transparent;color:#ef4444;font-family:var(--fm);font-size:10px;font-weight:700;
+      background:transparent;color:#ef4444;font-family:var(--fm);font-size:13px;font-weight:700;
       cursor:pointer;transition:all 0.12s;letter-spacing:0.04em;">
       ↩ Undo
     </button>
@@ -1006,19 +1008,19 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
 
   <!-- Mirror axis bar -->
   <div id="mirror-bar" style="display:none;align-items:center;gap:6px;padding:5px 8px;background:var(--panel2);border-bottom:1px solid var(--border);flex-shrink:0;flex-wrap:wrap;">
-    <label style="font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;">AXIS</label>
-    <button id="mirror-btn-h" onclick="setMirrorAxis('h')" style="background:var(--accent-glow);border:1px solid var(--accent);border-radius:3px;color:var(--accent);font-family:var(--fm);font-size:9px;padding:3px 7px;cursor:pointer;">Horiz</button>
-    <button id="mirror-btn-v" onclick="setMirrorAxis('v')" style="background:var(--panel);border:1px solid var(--border);border-radius:3px;color:var(--t2);font-family:var(--fm);font-size:9px;padding:3px 7px;cursor:pointer;">Vert</button>
-    <button id="mirror-btn-l" onclick="setMirrorAxis('line')" style="background:var(--panel);border:1px solid var(--border);border-radius:3px;color:var(--t2);font-family:var(--fm);font-size:9px;padding:3px 7px;cursor:pointer;">2-Pt Line</button>
-    <button onclick="mirrorSelected()" style="background:rgba(0,212,255,0.1);border:1px solid var(--accent-dim);border-radius:3px;color:var(--accent);font-family:var(--fm);font-size:9px;padding:3px 9px;cursor:pointer;margin-left:auto;">Apply</button>
+    <label style="font-family:var(--fm);font-size:12px;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;">AXIS</label>
+    <button id="mirror-btn-h" onclick="setMirrorAxis('h')" style="background:var(--accent-glow);border:1px solid var(--accent);border-radius:3px;color:var(--accent);font-family:var(--fm);font-size:12px;padding:3px 7px;cursor:pointer;">Horiz</button>
+    <button id="mirror-btn-v" onclick="setMirrorAxis('v')" style="background:var(--panel);border:1px solid var(--border);border-radius:3px;color:var(--t2);font-family:var(--fm);font-size:12px;padding:3px 7px;cursor:pointer;">Vert</button>
+    <button id="mirror-btn-l" onclick="setMirrorAxis('line')" style="background:var(--panel);border:1px solid var(--border);border-radius:3px;color:var(--t2);font-family:var(--fm);font-size:12px;padding:3px 7px;cursor:pointer;">2-Pt Line</button>
+    <button onclick="mirrorSelected()" style="background:rgba(0,212,255,0.1);border:1px solid var(--accent-dim);border-radius:3px;color:var(--accent);font-family:var(--fm);font-size:12px;padding:3px 9px;cursor:pointer;margin-left:auto;">Apply</button>
   </div>
 
   <!-- Measure readout bar -->
   <div id="measure-bar" style="display:none;align-items:center;gap:6px;padding:5px 8px;background:var(--panel2);border-bottom:1px solid var(--border);flex-shrink:0;flex-wrap:wrap;">
-    <label style="font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;">DIST</label>
-    <span id="measure-dist" style="font-family:var(--fm);font-size:11px;color:var(--amber);min-width:80px;">—</span>
-    <label style="font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;">ANG</label>
-    <span id="measure-angle" style="font-family:var(--fm);font-size:11px;color:var(--green);min-width:50px;">—</span>
+    <label style="font-family:var(--fm);font-size:12px;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;">DIST</label>
+    <span id="measure-dist" style="font-family:var(--fm);font-size:13px;color:var(--amber);min-width:80px;">—</span>
+    <label style="font-family:var(--fm);font-size:12px;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;">ANG</label>
+    <span id="measure-angle" style="font-family:var(--fm);font-size:13px;color:var(--green);min-width:50px;">—</span>
   </div>
 
   <!-- Rotation controls (shown when rotate tool is active OR objects are selected) -->
@@ -1027,21 +1029,21 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
     <button class="rot-btn" onclick="rotateSelected(90)"  title="Rotate 90° clockwise (E)">↻90°</button>
     <label style="margin-left:2px;">Δ</label>
     <input type="number" id="rotate-angle-input" value="0" step="1" placeholder="0"/>
-    <span style="font-family:var(--fm);font-size:9px;color:var(--t3);">°</span>
+    <span style="font-family:var(--fm);font-size:12px;color:var(--t3);">°</span>
     <button class="rot-btn hi" onclick="applyRotationInput(false)" title="Rotate by typed angle (relative)">+Δ</button>
     <button class="rot-btn" onclick="applyRotationInput(true)" title="Set absolute angle">ABS</button>
     <button class="rot-btn" onclick="flattenSelection()" title="Rotate to 0° horizontal">→0°</button>
   </div>
 
   <div id="arc-bar" style="display:none;align-items:center;gap:6px;padding:5px 8px;background:var(--panel2);border-bottom:1px solid var(--border);flex-shrink:0;">
-    <label style="font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;">MODE</label>
-    <button id="arc-btn-3pt" onclick="setArcMode('3pt')" style="background:var(--accent-glow);border:1px solid var(--accent);border-radius:3px;color:var(--accent);font-family:var(--fm);font-size:9px;padding:3px 7px;cursor:pointer;">3-Point</button>
-    <button id="arc-btn-csr" onclick="setArcMode('csr')" style="background:var(--panel);border:1px solid var(--border);border-radius:3px;color:var(--t2);font-family:var(--fm);font-size:9px;padding:3px 7px;cursor:pointer;">Ctr+R</button>
+    <label style="font-family:var(--fm);font-size:12px;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;">MODE</label>
+    <button id="arc-btn-3pt" onclick="setArcMode('3pt')" style="background:var(--accent-glow);border:1px solid var(--accent);border-radius:3px;color:var(--accent);font-family:var(--fm);font-size:12px;padding:3px 7px;cursor:pointer;">3-Point</button>
+    <button id="arc-btn-csr" onclick="setArcMode('csr')" style="background:var(--panel);border:1px solid var(--border);border-radius:3px;color:var(--t2);font-family:var(--fm);font-size:12px;padding:3px 7px;cursor:pointer;">Ctr+R</button>
   </div>
   <div id="fillet-bar" style="display:none;align-items:center;gap:6px;padding:5px 8px;background:var(--panel2);border-bottom:1px solid var(--border);flex-shrink:0;">
-    <label style="font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;">RADIUS</label>
-    <input type="number" id="fillet-r-input" value="5" min="0.0001" step="0.5" style="background:var(--panel);border:1px solid var(--border-hi);border-radius:3px;color:var(--accent);font-family:var(--fm);font-size:11px;padding:3px 6px;width:60px;outline:none;text-align:right;"/>
-    <span id="fillet-r-unit" style="font-family:var(--fm);font-size:9px;color:var(--t3);">mm</span>
+    <label style="font-family:var(--fm);font-size:12px;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;">RADIUS</label>
+    <input type="number" id="fillet-r-input" value="5" min="0.0001" step="0.5" style="background:var(--panel);border:1px solid var(--border-hi);border-radius:3px;color:var(--accent);font-family:var(--fm);font-size:13px;padding:3px 6px;width:60px;outline:none;text-align:right;"/>
+    <span id="fillet-r-unit" style="font-family:var(--fm);font-size:12px;color:var(--t3);">mm</span>
   </div>
   <div id="offset-bar">
     <label>DIST</label>
@@ -1051,9 +1053,9 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
 
   <!-- Polygon sides input (only shown for polygon tool) -->
   <div id="poly-bar" style="display:none;align-items:center;gap:6px;padding:5px 8px;background:var(--panel2);border-bottom:1px solid var(--border);flex-shrink:0;">
-    <label style="font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;">SIDES</label>
-    <input type="number" id="poly-sides-input" value="6" min="3" max="64" step="1" style="background:var(--panel);border:1px solid var(--border-hi);border-radius:3px;color:var(--accent);font-family:var(--fm);font-size:11px;padding:3px 6px;width:52px;outline:none;text-align:right;"/>
-    <label style="font-family:var(--fm);font-size:9px;color:var(--t3);text-transform:uppercase;">CIRC</label>
+    <label style="font-family:var(--fm);font-size:12px;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;">SIDES</label>
+    <input type="number" id="poly-sides-input" value="6" min="3" max="64" step="1" style="background:var(--panel);border:1px solid var(--border-hi);border-radius:3px;color:var(--accent);font-family:var(--fm);font-size:13px;padding:3px 6px;width:52px;outline:none;text-align:right;"/>
+    <label style="font-family:var(--fm);font-size:12px;color:var(--t3);text-transform:uppercase;">CIRC</label>
     <input type="checkbox" id="poly-inscribed" checked title="Inscribed (vertices on circle) vs circumscribed"/>
   </div>
   <div class="tool-grid-bottom">
@@ -1226,9 +1228,9 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
     </div>
     <div style="display:flex;gap:4px;">
       <input placeholder="Size" id="kv-weld-size" oninput="kvWeldSize=this.value"
-        style="flex:1;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:4px;color:var(--t1);font-family:var(--fm);font-size:9px;padding:3px 6px;outline:none;">
+        style="flex:1;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:4px;color:var(--t1);font-family:var(--fm);font-size:12px;padding:3px 6px;outline:none;">
       <input placeholder="Length" id="kv-weld-length" oninput="kvWeldLength=this.value"
-        style="flex:1;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:4px;color:var(--t1);font-family:var(--fm);font-size:9px;padding:3px 6px;outline:none;">
+        style="flex:1;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:4px;color:var(--t1);font-family:var(--fm);font-size:12px;padding:3px 6px;outline:none;">
     </div>
   </div>
 
@@ -1237,7 +1239,7 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
     <div class="kv-color-chip" id="kv-color-chip" style="background:#ff3cac"
          onclick="document.getElementById('kv-cp').click()"></div>
     <input type="color" id="kv-cp" value="#ff3cac" oninput="kvSetColor(this.value)" style="display:none">
-    <span style="font-family:var(--fm);font-size:9px;color:var(--t3);">Annotation color</span>
+    <span style="font-family:var(--fm);font-size:12px;color:var(--t3);">Annotation color</span>
   </div>
   <div class="kv-swatches" id="kv-swatches"></div>
 
@@ -1258,7 +1260,7 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
   </div>
 
   <!-- Page size -->
-  <div class="section-head" style="font-size:7.5px;border:none;padding:6px 8px 3px;">PAGE</div>
+  <div class="section-head" style="font-size:10px;border:none;padding:6px 8px 3px;">PAGE</div>
   <select class="kv-page-sel" onchange="kvSetPageSize(this.value)">
     <optgroup label="ISO">
       <option value="a4p">A4 Portrait</option>
@@ -1290,12 +1292,12 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
   </select>
 
   <!-- Layers -->
-  <div class="section-head" style="font-size:7.5px;border:none;padding:6px 8px 3px;">LAYERS</div>
+  <div class="section-head" style="font-size:10px;border:none;padding:6px 8px 3px;">LAYERS</div>
   <div id="kv-layers"></div>
 
   <!-- Export (always at bottom) -->
   <div class="kv-export-row">
-    <div class="section-head" style="font-size:7.5px;border:none;padding:4px 0 3px;">EXPORT</div>
+    <div class="section-head" style="font-size:10px;border:none;padding:4px 0 3px;">EXPORT</div>
     <button class="kv-export-btn vad" onclick="kvExportVAD()">
       <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
       Save .vad
@@ -1461,7 +1463,7 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
       <div id="splash-step-age">
         <div class="splash-prompt">
           <strong style="font-size:16px;">Hi! How old are you? 🎨</strong><br>
-          <span style="font-size:12px;">Your age sets your line thickness — younger = bolder lines!</span>
+          <span style="font-size:14px;">Your age sets your line thickness — younger = bolder lines!</span>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:14px;margin:18px 0;">
           <div style="display:flex;align-items:center;gap:10px;">
@@ -1474,7 +1476,7 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
               onkeydown="if(event.key==='Enter') splashConfirmAge()"
               oninput="splashPreviewAge(this.value)"/>
           </div>
-          <div id="splash-age-preview" style="font-family:var(--fm);font-size:11px;color:var(--t3);min-height:18px;"></div>
+          <div id="splash-age-preview" style="font-family:var(--fm);font-size:13px;color:var(--t3);min-height:18px;"></div>
           <!-- Big chunky age buttons for young kids -->
           <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
             <button onclick="document.getElementById('splash-age-input').value=5;splashPreviewAge(5)"
@@ -1581,7 +1583,7 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
       <div class="scad-extrude-row" id="scad-extrude-row">
         <label>Extrude Height</label>
         <input type="number" id="scad-extrude-h" value="5" min="0.01" step="0.5"/>
-        <span style="font-family:var(--fm);font-size:9px;color:var(--t3);">mm</span>
+        <span style="font-family:var(--fm);font-size:12px;color:var(--t3);">mm</span>
       </div>
       <div class="scad-hint">
         <b>Extrude</b> → ready-to-render 3D part in OpenSCAD.<br>
@@ -1765,9 +1767,9 @@ function splashPreviewAge(val) {
   pc.clearRect(0,0,260,60);
   pc.fillStyle = '#0a2e38'; pc.fillRect(0,0,260,60);
   const layers = [
-    {color:'#a8e8f5', lw:3.5*scale, dash:[],         y:14, label:'Solid'},
-    {color:'#ef4444', lw:2.5*scale, dash:[8,5],       y:30, label:'Hidden'},
-    {color:'#f59e0b', lw:1.8*scale, dash:[18,4,4,4],  y:46, label:'Center'},
+    {color:'#ff8800', lw:3.5*scale, dash:[],         y:14, label:'Solid'},
+    {color:'#ef4444', lw:2.5*scale, dash:[8*scale,5*scale],       y:30, label:'Hidden'},
+    {color:'#f59e0b', lw:1.8*scale, dash:[18*scale,4*scale,4*scale,4*scale],  y:46, label:'Center'},
     {color:'#39ff14', lw:1.5*scale, dash:[],           y:58, label:'Dim (neon)'},
   ];
   layers.forEach(l => {
@@ -1987,6 +1989,16 @@ const KID_LAYERS = {
 function kidLineWidth(layerName) {
   const base = (KID_LAYERS[layerName] || KID_LAYERS['Solid']).lineWidth;
   return base * kidLineScale;
+}
+
+// Dash-pattern segments scale by the same factor as line width, so a
+// dash-dot pattern's proportions (and its short "dot" segment vs. the
+// line's own thickness) stay consistent at every age setting instead of
+// the dot segment staying a fixed length while the line gets thicker
+// around it.
+function scaledDash(dashArr) {
+  if (!dashArr || !dashArr.length) return [];
+  return dashArr.map(d => d * kidLineScale);
 }
 
 // Active layer for new geometry
@@ -2572,10 +2584,11 @@ function drawPolyPreview() {
   const vr = inscribed ? r : r/Math.cos(Math.PI/n);
   const startAngle = Math.atan2(py-cy,px-cx);
   const lw = kidLineWidth(kidActiveLayer);
+  const dashOn = Math.max(2, lw*0.85);
   ctx.save();
   ctx.strokeStyle='rgba(79,200,224,0.7)';
-  ctx.setLineDash([5,4]);
-  ctx.lineWidth=Math.max(2,lw*0.85);
+  ctx.setLineDash([dashOn, dashOn*0.8]);
+  ctx.lineWidth=dashOn;
   ctx.beginPath();
   for(let i=0;i<=n;i++){
     const a=startAngle+i*(2*Math.PI/n);
@@ -2774,7 +2787,8 @@ function drawCirclePreview(){
   const ep=snapActive&&snapPoint?snapPoint:mouseWorld;
   const r=Math.hypot(ep.x-circleState.cx,ep.y-circleState.cy)*cam.zoom;
   const lw=kidLineWidth(kidActiveLayer);
-  ctx.save();ctx.strokeStyle='rgba(79,200,224,0.7)';ctx.lineWidth=Math.max(2,lw*0.85);ctx.setLineDash([5,4]);
+  const dashOn=Math.max(2,lw*0.85);
+  ctx.save();ctx.strokeStyle='rgba(79,200,224,0.7)';ctx.lineWidth=dashOn;ctx.setLineDash([dashOn, dashOn*0.8]);
   ctx.beginPath();ctx.arc(sc.x,sc.y,r,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);
   const sep=worldToScreen(ep.x,ep.y);ctx.strokeStyle='rgba(79,200,224,0.35)';ctx.lineWidth=Math.max(1.5,lw*0.5);
   ctx.beginPath();ctx.moveTo(sc.x,sc.y);ctx.lineTo(sep.x,sep.y);ctx.stroke();
@@ -2785,7 +2799,8 @@ function drawArcPreview(){
   if(activeTool!=='arc'||arcState.phase===0)return;
   const ep=snapActive&&snapPoint?snapPoint:mouseWorld;
   const lw=kidLineWidth(kidActiveLayer);
-  ctx.save();ctx.strokeStyle='rgba(79,200,224,0.7)';ctx.lineWidth=Math.max(2,lw*0.85);ctx.setLineDash([5,4]);
+  const dashOn=Math.max(2,lw*0.85);
+  ctx.save();ctx.strokeStyle='rgba(79,200,224,0.7)';ctx.lineWidth=dashOn;ctx.setLineDash([dashOn, dashOn*0.8]);
   if(arcState.phase===1){
     const sp1=worldToScreen(arcState.p1.x,arcState.p1.y);
     const sep=worldToScreen(ep.x,ep.y);
@@ -3889,11 +3904,11 @@ function drawGrid(W,H) {
   for(let y=y0;y<=y1;y+=spacing){ if(Math.round(y/spacing)%major===0){ const sy=worldToScreen(0,y).y; ctx.moveTo(0,sy); ctx.lineTo(W,sy); } }
   ctx.stroke();
 
-  ctx.strokeStyle='#b0bcd0'; ctx.lineWidth=1.5; ctx.beginPath();
+  ctx.strokeStyle=C.axis; ctx.lineWidth=1.5; ctx.beginPath();
   const ox=worldToScreen(0,0).x, oy=worldToScreen(0,0).y;
   ctx.moveTo(ox,0); ctx.lineTo(ox,H); ctx.moveTo(0,oy); ctx.lineTo(W,oy); ctx.stroke();
 
-  ctx.strokeStyle='#8090a8'; ctx.lineWidth=1; ctx.beginPath();
+  ctx.strokeStyle=C.axis; ctx.lineWidth=1; ctx.beginPath();
   ctx.moveTo(ox-6,oy); ctx.lineTo(ox+6,oy); ctx.moveTo(ox,oy-6); ctx.lineTo(ox,oy+6); ctx.stroke();
 }
 
@@ -3905,7 +3920,12 @@ function drawEntities() {
     const ls = getLayerStyle(o.layer || 'Solid');
     const strokeColor = sel ? C.entitySel : ls.color;
     const lw = sel ? kidLineWidth(o.layer || o.type || 'Solid') + 1.5 : kidLineWidth(o.layer || o.type || 'Solid');
-    const dash = sel ? [] : ls.dash;
+    // Dash-pattern segments scale with line weight too — otherwise the
+    // short "dot" segment in a dash-dot pattern (e.g. Center's 4-unit gap)
+    // stays a fixed length while the line gets thicker at higher age
+    // settings, and ends up shorter than the line is wide: a squished
+    // flat rectangle instead of a clean square dot.
+    const dash = sel ? [] : scaledDash(ls.dash);
 
     if(o.type==='LINE'){
       const a=worldToScreen(o.x1,o.y1), b=worldToScreen(o.x2,o.y2);
@@ -3970,8 +3990,14 @@ function drawEntities() {
   ctx.restore();
 }
 
+// Square marker (endpoints, vertices, snap points) — was a circle, but a
+// round dot next to a thick line reads as squished/undersized rather than
+// a clean point marker. Square is the minimum aspect; r is treated as a
+// half-size so the marker keeps roughly the same footprint a circle of
+// the same "radius" argument used to have.
 function drawDot(sx,sy,color,r=2.5) {
-  ctx.fillStyle=color; ctx.beginPath(); ctx.arc(sx,sy,r,0,Math.PI*2); ctx.fill();
+  const s = r; // half-width; square side = 2r, same footprint as the old circle's diameter
+  ctx.fillStyle=color; ctx.fillRect(sx-s, sy-s, s*2, s*2);
 }
 
 function drawRubberBand() {
@@ -4008,9 +4034,10 @@ function drawRubberBand() {
   const end = worldToScreen(ep.x, ep.y);
   const start = worldToScreen(lineState.x1, lineState.y1);
 
-  ctx.setLineDash([5,4]);
+  const dashOn = Math.max(2, lw*0.85);
+  ctx.setLineDash([dashOn, dashOn*0.8]);
   ctx.strokeStyle = C.rubberLine;
-  ctx.lineWidth   = Math.max(2, lw*0.85);
+  ctx.lineWidth   = dashOn;
   ctx.globalAlpha = 0.85;
   ctx.beginPath();
   ctx.moveTo(start.x, start.y);
@@ -4783,12 +4810,7 @@ requestAnimationFrame(()=>{
     kidSetMode('line');
     document.getElementById('cc-year').textContent = new Date().getFullYear();
     initSplash();
-    setTimeout(()=>{
-      GeoMemory.addLine(-15,0,15,0);
-      GeoMemory.addLine(0,-15,0,15);
-      render();
-      showToast('Demo loaded · Press L/A/C/R/P/F to draw');
-    },100);
+    render();
   });
 });
 
@@ -5749,6 +5771,28 @@ function kvRebuildEraseCanvas() {
   }
 }
 
+// True curve through freehand points — quadratic Bezier segments via each
+// point's midpoint to the next, matching KAD's approach of never stroking
+// the raw jagged polyline directly (KAD goes further, fitting a full
+// Catmull-Rom spline into a variable-width ribbon; this is the lightweight
+// version of the same idea — smooth curves, not straight facets, kept
+// simple since KID's brush is constant-width with no pressure input).
+function kvTracePath(ctx, pts) {
+  if (pts.length < 3) {
+    ctx.moveTo(pts[0].x, pts[0].y);
+    for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
+    return;
+  }
+  ctx.moveTo(pts[0].x, pts[0].y);
+  for (let i = 1; i < pts.length - 1; i++) {
+    const mx = (pts[i].x + pts[i+1].x) / 2;
+    const my = (pts[i].y + pts[i+1].y) / 2;
+    ctx.quadraticCurveTo(pts[i].x, pts[i].y, mx, my);
+  }
+  const last = pts[pts.length - 1], prev = pts[pts.length - 2];
+  ctx.quadraticCurveTo(prev.x, prev.y, last.x, last.y);
+}
+
 function kvRenderStroke(ctx, s) {
   if (!s) return;
   if (s.type === 'text') {
@@ -5772,12 +5816,7 @@ function kvRenderStroke(ctx, s) {
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     ctx.beginPath();
-    const p0 = kvW2S(s.pts[0].x, s.pts[0].y);
-    ctx.moveTo(p0.x, p0.y);
-    for (let i = 1; i < s.pts.length; i++) {
-      const p = kvW2S(s.pts[i].x, s.pts[i].y);
-      ctx.lineTo(p.x, p.y);
-    }
+    kvTracePath(ctx, s.pts.map(p => kvW2S(p.x, p.y)));
     ctx.stroke();
     ctx.restore();
   }
@@ -6168,7 +6207,7 @@ function kidRenderMissionList() {
     html += '<div onclick="kidStartMission(\'' + m.id + '\')" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:10px;border:2px solid ' + borderColor + ';background:' + bg + ';cursor:pointer;transition:all 0.15s;margin-bottom:8px;" onmouseover="this.style.transform=\'translateY(-2px)\';this.style.boxShadow=\'0 4px 16px rgba(0,0,0,0.3)\'" onmouseout="this.style.transform=\'\';this.style.boxShadow=\'\'">';
     html += '<span style="font-size:28px;">' + (done ? m.badge : m.emoji) + '</span>';
     html += '<div style="flex:1;"><div style="font-weight:700;color:#cdf3fa;font-size:13px;">' + m.title + '</div>';
-    html += '<div style="font-size:10px;color:#5a8a99;margin-top:2px;">' + m.steps.length + ' step' + (m.steps.length > 1 ? 's' : '') + (done ? ' · COMPLETE ✓' : '') + '</div></div>';
+    html += '<div style="font-size:13px;color:#5a8a99;margin-top:2px;">' + m.steps.length + ' step' + (m.steps.length > 1 ? 's' : '') + (done ? ' · COMPLETE ✓' : '') + '</div></div>';
     html += '<div style="font-size:20px;color:' + m.color + ';">' + (done ? '✓' : '▶') + '</div></div>';
   });
   list.innerHTML = html;
@@ -6205,8 +6244,8 @@ function kidShowStep() {
   var pct = Math.round((cur / total) * 100);
   hud.innerHTML = '<div style="display:flex;align-items:center;gap:10px;">'
     + '<span style="font-size:22px;">' + m.emoji + '</span>'
-    + '<div><div style="font-size:9px;font-weight:700;color:' + m.color + ';letter-spacing:0.1em;text-transform:uppercase;">' + m.title + ' · Step ' + cur + '/' + total + '</div>'
-    + '<div style="font-size:12px;color:#cdf3fa;margin-top:2px;">' + step.text + '</div></div>'
+    + '<div><div style="font-size:12px;font-weight:700;color:' + m.color + ';letter-spacing:0.1em;text-transform:uppercase;">' + m.title + ' · Step ' + cur + '/' + total + '</div>'
+    + '<div style="font-size:14px;color:#cdf3fa;margin-top:2px;">' + step.text + '</div></div>'
     + '<button onclick="kidStopMission()" style="margin-left:auto;background:none;border:none;color:#5a8a99;font-size:18px;cursor:pointer;padding:0 4px;line-height:1;">✕</button>'
     + '</div>'
     + '<div style="height:4px;background:#123f4a;border-radius:2px;margin-top:8px;overflow:hidden;">'
@@ -6238,8 +6277,8 @@ function kidShowComplete(m) {
     hud.innerHTML = '<div style="text-align:center;padding:8px 0;">'
       + '<div style="font-size:40px;">' + m.badge + '</div>'
       + '<div style="font-size:14px;font-weight:800;color:' + m.color + ';margin-top:6px;">Mission Complete!</div>'
-      + '<div style="font-size:11px;color:#8fc4d4;margin-top:2px;">' + m.title + '</div>'
-      + '<button onclick="kidOpenMissions()" style="margin-top:10px;padding:6px 20px;background:' + m.color + ';border:none;border-radius:6px;color:#fff;font-weight:700;font-size:11px;cursor:pointer;">See All Missions &#8594;</button>'
+      + '<div style="font-size:13px;color:#8fc4d4;margin-top:2px;">' + m.title + '</div>'
+      + '<button onclick="kidOpenMissions()" style="margin-top:10px;padding:6px 20px;background:' + m.color + ';border:none;border-radius:6px;color:#fff;font-weight:700;font-size:13px;cursor:pointer;">See All Missions &#8594;</button>'
       + '</div>';
     setTimeout(function(){ if(hud) hud.style.display='none'; }, 4000);
   }
@@ -6263,17 +6302,17 @@ window.addEventListener('load', function() {
     background:#0d2e3a; border-radius:16px; padding:24px 20px;
     width:380px; max-width:95vw; max-height:85vh; overflow-y:auto;
     box-shadow:0 24px 80px rgba(0,0,0,0.5);
-    font-family:'Fira Code',monospace;
+    font-family:var(--fu);
   ">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
       <div>
         <div style="font-size:22px;font-weight:800;color:#4fc8e0;">🎯 Missions</div>
-        <div style="font-size:10px;color:#5a8a99;margin-top:2px;">Learn real drafting, one step at a time</div>
+        <div style="font-size:13px;color:#5a8a99;margin-top:2px;">Learn real drafting, one step at a time</div>
       </div>
       <button onclick="kidCloseMissions()" style="background:#123f4a;border:none;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:16px;color:#8fc4d4;">✕</button>
     </div>
     <div id="kid-mission-list"></div>
-    <div style="margin-top:12px;padding:10px;background:#123f4a;border-radius:8px;font-size:9px;color:#5a8a99;text-align:center;line-height:1.6;">
+    <div style="margin-top:12px;padding:10px;background:#123f4a;border-radius:8px;font-size:12px;color:#5a8a99;text-align:center;line-height:1.6;">
       🏅 Earn a badge for every completed mission!<br>
       Badges are saved on this browser.
     </div>
@@ -6286,7 +6325,7 @@ window.addEventListener('load', function() {
   background:#0d2e3a; border:2px solid #4fc8e0; border-radius:12px;
   padding:12px 16px; min-width:340px; max-width:90vw;
   box-shadow:0 8px 32px rgba(79,200,224,0.25);
-  font-family:'Fira Code',monospace; z-index:200;
+  font-family:var(--fu); z-index:200;
   flex-direction:column; gap:0;
 "></div>
 

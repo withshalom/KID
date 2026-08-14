@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
   KADsuite™ — KID: Kernel-Instructed Design
-  Copyright (C) 2024-2025 KADsuite / withshalom
+  Copyright (C) 2026 KADsuite / withshalom
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published
@@ -17,8 +17,8 @@
   along with this program. If not, see <https://www.gnu.org/licenses/>.
 
   SPDX-License-Identifier: AGPL-3.0-or-later
-  KADsuite™, KAD™, KAM™, KUBE™, KARVE™, KONSTRUCT™, KULTIVATE™,
-  KODE™, and KANVAS™ are trademarks of withshalom / KADsuite.
+  KADsuite™, KAD™, KAM™, KUBIC™, KARVE™, KONSTRUCT™, KULTIVATE™, KODE™, KANVAS™,
+  KONNECTOR™, KAMPUS™, KLOUD™, KID™, and KODEX™ are trademarks of withshalom / KADsuite.
   Trademark rights are independent of and not transferred by this
   AGPL-3.0 license. Forks and derivative works may not use these
   marks or any confusingly similar names without express written
@@ -34,30 +34,33 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="copyright" content="Copyright (C) 2024-2025 KADsuite / withshalom. Licensed under AGPL-3.0-or-later. KADsuite™, KAD™, KAM™, KUBE™, KARVE™, KONSTRUCT™, KULTIVATE™, KODE™, and KANVAS™ are trademarks of withshalom / KADsuite. Forks must remain open source under AGPL. Trademarks not licensed by AGPL.">
+<meta name="copyright" content="Copyright (C) 2026 KADsuite / withshalom. Licensed under AGPL-3.0-or-later. KADsuite™, KAD™, KAM™, KUBIC™, KARVE™, KONSTRUCT™, KULTIVATE™, KODE™, KANVAS™, KONNECTOR™, KAMPUS™, KLOUD™, KID™, and KODEX™ are trademarks of withshalom / KADsuite. Forks must remain open source under AGPL. Trademarks not licensed by AGPL.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KID™ — Kernel-Instructed Design</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap');
 
 :root {
-  /* KID — bright, friendly, white-canvas theme */
-  --void:       #ffffff;
-  --panel:      #f4f6fb;
-  --panel2:     #e8ecf5;
-  --hover:      #dde3f0;
-  --border:        #c8d0e0;
-  --border-hi: #a0aec0;
-  --accent:        #ff8800;
-  --accent-dim:    #cc6600;
-  --accent-glow:   rgba(255,136,0,0.18);
+  /* KID — Frost theme: full cyan, no white pan. This is KID's default
+     identity the way Blueprint is KAD's default theme — a dark frost
+     navy-teal canvas with a saturated cyan accent, replacing the old
+     white-canvas / orange-accent scheme. */
+  --void:       #071e26;
+  --panel:      #0d2e3a;
+  --panel2:     #123f4a;
+  --hover:      #1a4a5a;
+  --border:        #1c4552;
+  --border-hi: #2f7288;
+  --accent:        #4fc8e0;
+  --accent-dim:    #2f96ab;
+  --accent-glow:   rgba(79,200,224,0.22);
   --green:         #22c55e;
   --green-dim:     #16a34a;
   --amber:         #f59e0b;
   --red:           #ef4444;
-  --t1:  #1a2030;
-  --t2:  #4a5568;
-  --t3:  #9aa5b4;
+  --t1:  #cdf3fa;
+  --t2:  #8fc4d4;
+  --t3:  #5a8a99;
   --fm:     'Fira Code', monospace;
   --fd:       'Syne', sans-serif;
   --sidebar-w:     240px;
@@ -74,7 +77,6 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
 /* ── TOPBAR ── */
 #topbar { grid-column:1/-1; display:flex; align-items:center; background:var(--panel); border-bottom:1px solid var(--border); padding:0 12px; position:relative; z-index:30; }
 .brand { display:flex; align-items:center; gap:8px; margin-right:20px; font-family:var(--fm); font-weight:700; font-size:14px; color:var(--accent); letter-spacing:0.04em; user-select:none; }
-.brand-dot { width:6px; height:6px; background:var(--accent); border-radius:50%; box-shadow:0 0 6px var(--accent); }
 .brand-sub { font-size:9px; color:var(--t3); letter-spacing:0.12em; text-transform:uppercase; font-weight:400; }
 .tb-menu { display:flex; align-items:center; }
 .tb-menu-item { padding:0 12px; height:var(--toolbar-h); display:flex; align-items:center; font-size:12px; color:var(--t2); cursor:pointer; transition:color 0.15s,background 0.15s; letter-spacing:0.02em; position:relative; }
@@ -150,11 +152,11 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
 .layer-count { font-size:10px; color:var(--t3); font-family:var(--fm); }
 
 /* ── CANVAS AREA ── */
-#canvas-wrap { position:relative; overflow:hidden; background:#ffffff; flex:1; min-width:0; }
+#canvas-wrap { position:relative; overflow:hidden; background:#0a2e38; flex:1; min-width:0; }
 #main-canvas { display:block; }
 
 /* ── SNAP INDICATOR ── */
-.snap-ring { position:absolute; pointer-events:none; width:14px; height:14px; border:2.5px solid #ff8800; border-radius:50%; box-shadow:0 0 8px rgba(255,136,0,0.5); transform:translate(-50%,-50%); display:none; }
+.snap-ring { position:absolute; pointer-events:none; width:14px; height:14px; border:2.5px solid #4fc8e0; border-radius:50%; box-shadow:0 0 8px rgba(79,200,224,0.5); transform:translate(-50%,-50%); display:none; }
 
 /* ── COORD OVERLAY ── */
 #coord-overlay { position:absolute; bottom:8px; right:8px; background:rgba(244,246,251,0.95); border:1px solid var(--border); backdrop-filter:blur(4px); padding:5px 10px; border-radius:6px; font-family:var(--fm); font-size:12px; color:var(--t2); pointer-events:none; display:flex; gap:12px; letter-spacing:0.04em; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
@@ -163,7 +165,7 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
 
 /* ── CONTEXT HINT ── */
 #hint { position:absolute; top:10px; left:50%; transform:translateX(-50%); background:rgba(244,246,251,0.97); border:1px solid var(--border); border-radius:6px; padding:6px 14px; font-size:11px; font-family:var(--fm); color:var(--t2); pointer-events:none; white-space:nowrap; letter-spacing:0.04em; box-shadow:0 2px 10px rgba(0,0,0,0.1); }
-#hint span { color:#ff8800; font-weight:700; }
+#hint span { color:#4fc8e0; font-weight:700; }
 
 /* ── STATUS BAR ── */
 #statusbar { grid-column:1/-1; background:var(--panel); border-top:1px solid var(--border); display:flex; align-items:center; padding:0 12px; font-family:var(--fm); font-size:10px; color:var(--t3); letter-spacing:0.04em; }
@@ -401,10 +403,6 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
   font-size: 22px; font-weight: 700; color: var(--accent);
   letter-spacing: 0.06em; margin-bottom: 6px;
 }
-.splash-brand-dot {
-  width: 10px; height: 10px; background: var(--accent);
-  border-radius: 50%; box-shadow: 0 0 10px var(--accent);
-}
 .splash-sub {
   font-size: 10px; color: var(--t3);
   letter-spacing: 0.14em; text-transform: uppercase;
@@ -432,7 +430,7 @@ html, body { width:100%; height:100%; overflow:hidden; box-sizing:border-box; ba
   transform: translateY(-1px);
   box-shadow: 0 4px 16px rgba(0,0,0,0.4);
 }
-.splash-unit-btn.mm-btn:hover  { border-color: #ff8800; box-shadow: 0 4px 16px rgba(255,136,0,0.2); }
+.splash-unit-btn.mm-btn:hover  { border-color: var(--accent); box-shadow: 0 4px 16px rgba(79,200,224,0.2); }
 .splash-unit-btn.in-btn:hover  { border-color: var(--amber);  box-shadow: 0 4px 16px rgba(245,158,11,0.2); }
 .splash-unit-btn .sub-unit {
   font-size: 28px; font-weight: 700; letter-spacing: 0.02em;
@@ -742,12 +740,12 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
 <!-- TOPBAR -->
 <div id="topbar">
   <div class="brand" style="gap:10px;">
-  <div style="width:32px;height:32px;background:#ff8800;border-radius:8px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(255,136,0,0.4);">
-    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2.5"><path d="M5 3 L5 21 M5 12 L14 12 Q19 12 19 7.5 Q19 3 14 3 Z"/></svg>
+  <div style="width:32px;height:32px;background:#1c7f96;border-radius:8px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(79,200,224,0.4);">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#eafcff" stroke-width="2.5"><path d="M5 3 L5 21 M5 12 L14 12 Q19 12 19 7.5 Q19 3 14 3 Z"/></svg>
   </div>
   <div style="display:flex;flex-direction:column;gap:0;">
-    <span style="font-size:16px;font-weight:800;letter-spacing:0.04em;color:#ff8800;">.KID</span>
-    <div class="brand-sub" id="brand-sub" style="color:#9aa5b4;">Kernel-Instructed Design</div>
+    <span style="font-size:16px;font-weight:800;letter-spacing:0.04em;color:#8ff4ff;">KID</span>
+    <div class="brand-sub" id="brand-sub" style="color:#5a8a99;">Kernel-Instructed Design</div>
   </div>
 </div>
   <div class="tb-sep"></div>
@@ -825,13 +823,13 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
   <div class="tb-right">
     <button onclick="kidOpenMissions()" style="
       display:flex;align-items:center;gap:6px;padding:5px 12px;
-      background:linear-gradient(135deg,#ff8800,#ff6600);
-      border:none;border-radius:6px;color:#fff;
+      background:linear-gradient(135deg,#0d5568,#2f96ab);
+      border:none;border-radius:6px;color:#eafcff;
       font-family:'Fira Code',monospace;font-size:11px;font-weight:700;
       cursor:pointer;letter-spacing:0.04em;
-      box-shadow:0 2px 8px rgba(255,136,0,0.3);transition:all 0.15s;
-    " onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 4px 14px rgba(255,136,0,0.4)'"
-       onmouseout="this.style.transform='';this.style.boxShadow='0 2px 8px rgba(255,136,0,0.3)'">
+      box-shadow:0 2px 8px rgba(79,200,224,0.3);transition:all 0.15s;
+    " onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 4px 14px rgba(79,200,224,0.4)'"
+       onmouseout="this.style.transform='';this.style.boxShadow='0 2px 8px rgba(79,200,224,0.3)'">
       🎯 Missions
     </button>
     <span class="tb-badge">v0.0</span>
@@ -859,7 +857,7 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
 
 <!-- SIDEBAR -->
 <div id="sidebar">
-  <div class="section-head" style="background:#ff8800;color:#fff;letter-spacing:0.1em;">✏️  Draw Tools</div>
+  <div class="section-head" style="background:var(--accent);color:#062028;letter-spacing:0.1em;">✏️  Draw Tools</div>
 
 <!-- KID LAYER SWITCHER -->
 <!-- KID DRAWING TOOLS -->
@@ -884,8 +882,8 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
   <!-- Layer buttons -->
   <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:10px;">
     <button id="kid-layer-solid" onclick="kidLayerBtn('Solid')"
-      style="width:100%;padding:10px 10px;border-radius:6px;border:2px solid #1a2030;
-      background:#1a2030;color:#e8ecf5;font-family:var(--fm);font-size:11px;font-weight:700;
+      style="width:100%;padding:10px 10px;border-radius:6px;border:2px solid #a8e8f5;
+      background:#a8e8f5;color:#062028;font-family:var(--fm);font-size:11px;font-weight:700;
       cursor:pointer;transition:all 0.12s;text-align:left;letter-spacing:0.04em;">
       ⬛ Solid
     </button>
@@ -1038,7 +1036,7 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
     <div class="prop-row"><span class="prop-key">Zoom</span><span class="prop-val" id="prop-zoom">3.00×</span></div>
     <div class="prop-row"><span class="prop-key">Snap</span><span class="prop-val green" id="prop-snap">ON</span></div>
     <div class="prop-row"><span class="prop-key">Grid</span><span class="prop-val green" id="prop-grid-st">ON</span></div>
-    <div class="prop-row" style="margin-top:6px;"><span class="prop-key">Layer</span><span class="prop-val"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#1a2030;box-shadow:0 0 4px rgba(26,32,48,0.4);margin-right:4px;"></span><span id="kid-active-layer-label">Solid Lines</span></span></div>
+    <div class="prop-row" style="margin-top:6px;"><span class="prop-key">Layer</span><span class="prop-val"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#a8e8f5;box-shadow:0 0 4px rgba(168,232,245,0.5);margin-right:4px;"></span><span id="kid-active-layer-label">Solid Lines</span></span></div>
   </div>
 </div>
 
@@ -1251,10 +1249,10 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
     <div class="sb-item"><span>U</span><span class="sb-val">units</span></div>
     <div class="sb-item"><span>M</span><span class="sb-val">mirror</span></div>
     <div class="sb-item"><span>D</span><span class="sb-val">measure</span></div>
-    <div class="sb-item"><span class="sb-val ok">.KID v0.0</span></div>
+    <div class="sb-item"><span class="sb-val ok">KID v0.0</span></div>
     <div class="sb-cc">
       <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" style="flex-shrink:0;opacity:0.7"><circle cx="12" cy="12" r="9"/><path d="M10 9.5A2.5 2.5 0 0 0 7.5 12a2.5 2.5 0 0 0 2.5 2.5"/><path d="M16 9.5A2.5 2.5 0 0 0 13.5 12a2.5 2.5 0 0 0 2.5 2.5"/></svg>
-      <span>© <span id="cc-year"></span> KADsuite™ · .KID Kernel-Instructed Design · AGPL-3.0 · <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener" class="cc-link">Source on GitHub</a> · withshalom</span>
+      <span>© <span id="cc-year"></span> KADsuite™ · KID Kernel-Instructed Design · AGPL-3.0 · <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener" class="cc-link">Source on GitHub</a> · withshalom</span>
     </div>
   </div>
 </div>
@@ -1364,7 +1362,7 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
 <div id="splash-overlay" onclick="event.stopPropagation()">
   <div id="splash-dialog">
     <div class="dlg-head">
-      <div class="splash-brand"><div class="splash-brand-dot"></div>.KID</div>
+      <div class="splash-brand">KID</div>
       <div class="splash-sub">Kernel-Instructed Design · v0.0</div>
     </div>
     <div class="dlg-body">
@@ -1404,11 +1402,11 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
           </div>
           <!-- Live line weight preview canvas -->
           <canvas id="splash-line-preview" width="260" height="60"
-            style="border-radius:8px;background:#fff;border:2px solid var(--border);"></canvas>
+            style="border-radius:8px;background:#0a2e38;border:2px solid var(--border);"></canvas>
           <button onclick="splashConfirmAge()"
-            style="padding:12px 36px;background:var(--accent);color:#fff;border:none;border-radius:10px;
+            style="padding:12px 36px;background:var(--accent);color:#062028;border:none;border-radius:10px;
             font-family:var(--fm);font-size:14px;font-weight:800;cursor:pointer;letter-spacing:0.04em;
-            box-shadow:0 4px 16px rgba(255,136,0,0.35);transition:transform 0.12s;"
+            box-shadow:0 4px 16px rgba(79,200,224,0.35);transition:transform 0.12s;"
             onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform=''">
             That's me! →
           </button>
@@ -1437,7 +1435,7 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
 
       <div class="splash-note">
         AGPL-3.0 · Open source · KADsuite™ · withshalom<br>
-        © <span id="splash-year"></span> KADsuite™ · .KID Kernel-Instructed Design
+        © <span id="splash-year"></span> KADsuite™ · KID Kernel-Instructed Design
       </div>
     </div>
   </div>
@@ -1508,13 +1506,56 @@ body.kanvas-mode { --accent: #0090a8; --accent-dim: #006888; --accent-glow: rgba
 <script>
 'use strict';
 // ═══════════════════════════════════════════════════════════
-//  .KID v0.0  — Kernel-Aided Design
+//  KID v0.0  — Kernel-Aided Design
 // ═══════════════════════════════════════════════════════════
 
 // ── CANVAS ──────────────────────────────────────────────
 const canvas = document.getElementById('main-canvas');
 const ctx    = canvas.getContext('2d');
 const wrap   = document.getElementById('canvas-wrap');
+
+
+// ────────────────────────────────────────────────────────────────────────────
+// Splash Screen Control Functions
+// ────────────────────────────────────────────────────────────────────────────
+
+function splashPreviewAge(age) {
+  // Update the splash preview layer weight based on age
+  var preview = document.getElementById('splash-layer-preview');
+  if (!preview) return;
+  var weight = 0.5 + (age / 20); // younger = bolder
+  preview.style.strokeWidth = weight;
+}
+
+function splashSelectUnit(unit) {
+  // Save unit preference and dismiss splash
+  try { localStorage.setItem('kid-unit', unit); } catch(e){}
+  unitMode = unit;
+  dismissSplash();
+}
+
+function splashConfirmAge() {
+  // Confirm age and proceed to unit selection
+  var ageInput = document.getElementById('splash-age-input');
+  var age = parseInt(ageInput.value) || 9;
+  localStorage.setItem('kid-age', age);
+  window.KID_AGE = age;
+  var agePrompt = document.getElementById('splash-age-prompt');
+  var unitPrompt = document.getElementById('splash-unit-prompt');
+  if (agePrompt) agePrompt.style.display = 'none';
+  if (unitPrompt) unitPrompt.style.display = 'block';
+}
+
+function dismissSplash() {
+  var overlay = document.getElementById('splash-overlay');
+  if (overlay) {
+    overlay.style.opacity = '0';
+    setTimeout(() => {
+      overlay.style.display = 'none';
+      canvas.style.pointerEvents = 'auto';
+    }, 300);
+  }
+}
 
 function resizeCanvas() {
   canvas.width  = wrap.clientWidth;
@@ -1632,9 +1673,9 @@ function splashPreviewAge(val) {
   if (!previewCanvas) return;
   const pc = previewCanvas.getContext('2d');
   pc.clearRect(0,0,260,60);
-  pc.fillStyle = '#fff'; pc.fillRect(0,0,260,60);
+  pc.fillStyle = '#0a2e38'; pc.fillRect(0,0,260,60);
   const layers = [
-    {color:'#1a2030', lw:3.5*scale, dash:[],         y:14, label:'Solid'},
+    {color:'#a8e8f5', lw:3.5*scale, dash:[],         y:14, label:'Solid'},
     {color:'#ef4444', lw:2.5*scale, dash:[8,5],       y:30, label:'Hidden'},
     {color:'#f59e0b', lw:1.8*scale, dash:[18,4,4,4],  y:46, label:'Center'},
     {color:'#39ff14', lw:1.5*scale, dash:[],           y:58, label:'Dim (neon)'},
@@ -1846,7 +1887,7 @@ function kidSetAge(age) {
 }
 
 const KID_LAYERS = {
-  'Solid':  { color:'#1a2030', lineWidth: 3.5, dash: [],               label:'Solid Lines',  emoji:'⬛' },
+  'Solid':  { color:'#a8e8f5', lineWidth: 3.5, dash: [],               label:'Solid Lines',  emoji:'⬛' },
   'Hidden': { color:'#ef4444', lineWidth: 2.5, dash: [8,5],            label:'Hidden Lines', emoji:'🔴' },
   'Center': { color:'#f59e0b', lineWidth: 1.8, dash: [18,5,4,5],       label:'Center Lines', emoji:'🟡' },
   'Dim':    { color:'#39ff14', lineWidth: 1.5, dash: [],               label:'Dimensions',   emoji:'📐' },
@@ -2454,7 +2495,7 @@ function drawPolyPreview() {
   ctx.setLineDash([]);
   // center dot
   const sc=worldToScreen(cx,cy);
-  ctx.strokeStyle='var(--green)';
+  ctx.strokeStyle='#00ff9d';
   ctx.lineWidth=1;
   ctx.beginPath();
   ctx.arc(sc.x,sc.y,4,0,Math.PI*2);
@@ -3508,19 +3549,22 @@ function updateGridLabel() {
 }
 
 // ── RENDER ──────────────────────────────────────────────
+// Frost theme — the way Blueprint is KAD's default theme: a dark
+// frost-cyan drafting void instead of the old white canvas, with line
+// ink light enough to read against it.
 const C={
-  bg:'#ffffff',
-  grid:'#e8edf5',
-  gridMaj:'#c8d4e8',
-  axis:'#b0bcd0',
+  bg:'#0a2e38',
+  grid:'#123f4a',
+  gridMaj:'#1c5468',
+  axis:'#2a6f82',
   // KID layer colors — real drafting standards, kid-friendly weights
-  entity:'#1a2030',        // solid layer — dark, heavy
-  entitySel:'#ff8800',     // selected — orange
-  point:'#ff8800',
-  rubberLine:'#ff8800',
+  entity:'#a8e8f5',        // solid layer — light frost ink, reads on dark bg
+  entitySel:'#4fc8e0',     // selected — frost cyan accent
+  point:'#4fc8e0',
+  rubberLine:'#4fc8e0',
   startPt:'#22c55e',
   // Layer-specific colors (used in drawEntities)
-  layerSolid:  '#1a2030',  // solid lines — dark charcoal
+  layerSolid:  '#a8e8f5',  // solid lines — light frost cyan
   layerHidden: '#ef4444',  // hidden lines — bright red
   layerCenter: '#f59e0b',  // center lines — amber/yellow
 };
@@ -3580,7 +3624,7 @@ function drawEntities() {
 
     if(o.type==='LINE'){
       const a=worldToScreen(o.x1,o.y1), b=worldToScreen(o.x2,o.y2);
-      if(sel){ ctx.shadowColor='rgba(255,136,0,0.45)'; ctx.shadowBlur=10; }
+      if(sel){ ctx.shadowColor='rgba(79,200,224,0.45)'; ctx.shadowBlur=10; }
       ctx.strokeStyle=strokeColor;
       ctx.lineWidth=lw;
       ctx.setLineDash(dash);
@@ -3592,7 +3636,7 @@ function drawEntities() {
 
     } else if(o.type==='POLYLINE'){
       if(o.pts.length < 2) continue;
-      if(sel){ ctx.shadowColor='rgba(255,136,0,0.45)'; ctx.shadowBlur=12; }
+      if(sel){ ctx.shadowColor='rgba(79,200,224,0.45)'; ctx.shadowBlur=12; }
       ctx.strokeStyle=strokeColor;
       ctx.lineWidth=lw;
       ctx.setLineDash(dash);
@@ -3618,7 +3662,7 @@ function drawEntities() {
       drawDot(p.x,p.y,C.point);
     } else if(o.type==='CIRCLE'){
       const sc=worldToScreen(o.cx,o.cy);const sr=o.r*cam.zoom;
-      if(sel){ctx.shadowColor='rgba(255,136,0,0.45)';ctx.shadowBlur=12;}
+      if(sel){ctx.shadowColor='rgba(79,200,224,0.45)';ctx.shadowBlur=12;}
       ctx.strokeStyle=strokeColor; ctx.lineWidth=lw;
       ctx.setLineDash(dash);
       ctx.beginPath();ctx.arc(sc.x,sc.y,sr,0,Math.PI*2);ctx.stroke();
@@ -3628,7 +3672,7 @@ function drawEntities() {
       drawDot(sc.x,sc.y,strokeColor,lw*0.7);
     } else if(o.type==='ARC'){
       const sc=worldToScreen(o.cx,o.cy);const sr=o.r*cam.zoom;
-      if(sel){ctx.shadowColor='rgba(255,136,0,0.45)';ctx.shadowBlur=12;}
+      if(sel){ctx.shadowColor='rgba(79,200,224,0.45)';ctx.shadowBlur=12;}
       ctx.strokeStyle=strokeColor; ctx.lineWidth=lw;
       ctx.setLineDash(dash);
       ctx.beginPath();ctx.arc(sc.x,sc.y,sr,-o.endA,-o.startA,!o.ccw);ctx.stroke();
@@ -5423,7 +5467,7 @@ function kidSetMode(mode) {
       linBtn.style.background = 'var(--accent-glow)'; linBtn.style.borderColor = 'var(--accent)'; linBtn.style.color = 'var(--accent)';
       curBtn.style.background = 'transparent'; curBtn.style.borderColor = 'var(--border)'; curBtn.style.color = 'var(--t3)';
     } else {
-      curBtn.style.background = 'rgba(255,136,0,0.10)'; curBtn.style.borderColor = 'var(--accent)'; curBtn.style.color = 'var(--accent)';
+      curBtn.style.background = 'rgba(79,200,224,0.10)'; curBtn.style.borderColor = 'var(--accent)'; curBtn.style.color = 'var(--accent)';
       linBtn.style.background = 'transparent'; linBtn.style.borderColor = 'var(--border)'; linBtn.style.color = 'var(--t3)';
     }
   }
@@ -5473,7 +5517,7 @@ function kidSetLayer(name) {
     if (n === name) {
       btn.style.background  = n === 'Dim' ? 'rgba(57,255,20,0.18)' : ls.color;
       btn.style.borderColor = ls.color;
-      btn.style.color       = (n === 'Center' || n === 'Solid') ? '#1a2030' : ls.color;
+      btn.style.color       = (n === 'Center' || n === 'Solid') ? '#062028' : ls.color;
       btn.style.transform   = 'scale(1.04)';
       btn.style.boxShadow   = '0 2px 12px rgba(0,0,0,0.22)';
       btn.style.fontWeight  = '800';
@@ -5482,7 +5526,7 @@ function kidSetLayer(name) {
       btn.style.fontSize = Math.min(11, 7 + lw * 0.6) + 'px';
     } else {
       btn.style.background  = 'transparent';
-      btn.style.borderColor = '#c8d0e0';
+      btn.style.borderColor = '#1c4552';
       btn.style.color       = ls.color;
       btn.style.transform   = '';
       btn.style.boxShadow   = '';
@@ -5569,12 +5613,12 @@ function kidRenderMissionList() {
   var html = '';
   KID_MISSIONS.forEach(function(m) {
     var done = kidMissionState.earned.has(m.id);
-    var borderColor = done ? m.color : '#c8d0e0';
-    var bg = done ? m.color + '18' : '#fff';
-    html += '<div onclick="kidStartMission(\'' + m.id + '\')" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:10px;border:2px solid ' + borderColor + ';background:' + bg + ';cursor:pointer;transition:all 0.15s;margin-bottom:8px;" onmouseover="this.style.transform=\'translateY(-2px)\';this.style.boxShadow=\'0 4px 16px rgba(0,0,0,0.1)\'" onmouseout="this.style.transform=\'\';this.style.boxShadow=\'\'">';
+    var borderColor = done ? m.color : '#1c4552';
+    var bg = done ? m.color + '18' : '#123f4a';
+    html += '<div onclick="kidStartMission(\'' + m.id + '\')" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:10px;border:2px solid ' + borderColor + ';background:' + bg + ';cursor:pointer;transition:all 0.15s;margin-bottom:8px;" onmouseover="this.style.transform=\'translateY(-2px)\';this.style.boxShadow=\'0 4px 16px rgba(0,0,0,0.3)\'" onmouseout="this.style.transform=\'\';this.style.boxShadow=\'\'">';
     html += '<span style="font-size:28px;">' + (done ? m.badge : m.emoji) + '</span>';
-    html += '<div style="flex:1;"><div style="font-weight:700;color:#1a2030;font-size:13px;">' + m.title + '</div>';
-    html += '<div style="font-size:10px;color:#9aa5b4;margin-top:2px;">' + m.steps.length + ' step' + (m.steps.length > 1 ? 's' : '') + (done ? ' · COMPLETE ✓' : '') + '</div></div>';
+    html += '<div style="flex:1;"><div style="font-weight:700;color:#cdf3fa;font-size:13px;">' + m.title + '</div>';
+    html += '<div style="font-size:10px;color:#5a8a99;margin-top:2px;">' + m.steps.length + ' step' + (m.steps.length > 1 ? 's' : '') + (done ? ' · COMPLETE ✓' : '') + '</div></div>';
     html += '<div style="font-size:20px;color:' + m.color + ';">' + (done ? '✓' : '▶') + '</div></div>';
   });
   list.innerHTML = html;
@@ -5612,10 +5656,10 @@ function kidShowStep() {
   hud.innerHTML = '<div style="display:flex;align-items:center;gap:10px;">'
     + '<span style="font-size:22px;">' + m.emoji + '</span>'
     + '<div><div style="font-size:9px;font-weight:700;color:' + m.color + ';letter-spacing:0.1em;text-transform:uppercase;">' + m.title + ' · Step ' + cur + '/' + total + '</div>'
-    + '<div style="font-size:12px;color:#1a2030;margin-top:2px;">' + step.text + '</div></div>'
-    + '<button onclick="kidStopMission()" style="margin-left:auto;background:none;border:none;color:#9aa5b4;font-size:18px;cursor:pointer;padding:0 4px;line-height:1;">✕</button>'
+    + '<div style="font-size:12px;color:#cdf3fa;margin-top:2px;">' + step.text + '</div></div>'
+    + '<button onclick="kidStopMission()" style="margin-left:auto;background:none;border:none;color:#5a8a99;font-size:18px;cursor:pointer;padding:0 4px;line-height:1;">✕</button>'
     + '</div>'
-    + '<div style="height:4px;background:#e8ecf5;border-radius:2px;margin-top:8px;overflow:hidden;">'
+    + '<div style="height:4px;background:#123f4a;border-radius:2px;margin-top:8px;overflow:hidden;">'
     + '<div style="height:100%;width:' + pct + '%;background:' + m.color + ';border-radius:2px;transition:width 0.3s;"></div></div>';
 }
 
@@ -5644,7 +5688,7 @@ function kidShowComplete(m) {
     hud.innerHTML = '<div style="text-align:center;padding:8px 0;">'
       + '<div style="font-size:40px;">' + m.badge + '</div>'
       + '<div style="font-size:14px;font-weight:800;color:' + m.color + ';margin-top:6px;">Mission Complete!</div>'
-      + '<div style="font-size:11px;color:#4a5568;margin-top:2px;">' + m.title + '</div>'
+      + '<div style="font-size:11px;color:#8fc4d4;margin-top:2px;">' + m.title + '</div>'
       + '<button onclick="kidOpenMissions()" style="margin-top:10px;padding:6px 20px;background:' + m.color + ';border:none;border-radius:6px;color:#fff;font-weight:700;font-size:11px;cursor:pointer;">See All Missions &#8594;</button>'
       + '</div>';
     setTimeout(function(){ if(hud) hud.style.display='none'; }, 4000);
@@ -5666,20 +5710,20 @@ window.addEventListener('load', function() {
   backdrop-filter:blur(6px); z-index:950; align-items:center; justify-content:center;
 ">
   <div style="
-    background:#fff; border-radius:16px; padding:24px 20px;
+    background:#0d2e3a; border-radius:16px; padding:24px 20px;
     width:380px; max-width:95vw; max-height:85vh; overflow-y:auto;
-    box-shadow:0 24px 80px rgba(0,0,0,0.3);
+    box-shadow:0 24px 80px rgba(0,0,0,0.5);
     font-family:'Fira Code',monospace;
   ">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
       <div>
-        <div style="font-size:22px;font-weight:800;color:#ff8800;">🎯 Missions</div>
-        <div style="font-size:10px;color:#9aa5b4;margin-top:2px;">Learn real drafting, one step at a time</div>
+        <div style="font-size:22px;font-weight:800;color:#4fc8e0;">🎯 Missions</div>
+        <div style="font-size:10px;color:#5a8a99;margin-top:2px;">Learn real drafting, one step at a time</div>
       </div>
-      <button onclick="kidCloseMissions()" style="background:#f4f6fb;border:none;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:16px;color:#4a5568;">✕</button>
+      <button onclick="kidCloseMissions()" style="background:#123f4a;border:none;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:16px;color:#8fc4d4;">✕</button>
     </div>
     <div id="kid-mission-list"></div>
-    <div style="margin-top:12px;padding:10px;background:#f4f6fb;border-radius:8px;font-size:9px;color:#9aa5b4;text-align:center;line-height:1.6;">
+    <div style="margin-top:12px;padding:10px;background:#123f4a;border-radius:8px;font-size:9px;color:#5a8a99;text-align:center;line-height:1.6;">
       🏅 Earn a badge for every completed mission!<br>
       Badges are saved on this browser.
     </div>
@@ -5689,9 +5733,9 @@ window.addEventListener('load', function() {
 <!-- KID STEP HUD (shows active mission step at top of canvas) -->
 <div id="kid-step-hud" style="
   display:none; position:fixed; top:60px; left:50%; transform:translateX(-50%);
-  background:#fff; border:2px solid #ff8800; border-radius:12px;
+  background:#0d2e3a; border:2px solid #4fc8e0; border-radius:12px;
   padding:12px 16px; min-width:340px; max-width:90vw;
-  box-shadow:0 8px 32px rgba(255,136,0,0.2);
+  box-shadow:0 8px 32px rgba(79,200,224,0.25);
   font-family:'Fira Code',monospace; z-index:200;
   flex-direction:column; gap:0;
 "></div>
